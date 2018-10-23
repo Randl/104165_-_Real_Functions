@@ -1,0 +1,49 @@
+\section{Introduction}
+If $\forall x \quad f_n(x) \to f(x)$ (pointwise) does $\int_0^1 f_n(x) \dd{x} \to \int_0^1 f(x) \dd{x}$?
+
+Define $f_n(x) = \chi_{r_1, r_2, \dots r_n}$, where $\left\{ r_i \right\} = \mathbb{Q} \cap [0,1]$, i.e., first $n$ rational numbers. Those functions are integrable since they are non-zero in finite number of points. However, $f(x) = \chi_{\mathbb{Q} \cap [0,1]}$ is not integrable.
+\paragraph{Riemann integral: limit}
+We defined Riemann integral as limit of Riemann sum:
+$$\int_a^b f(x) \dd{x} = \lim \sum f(x'_i)(x_{i+1}-x_i)$$
+
+\begin{center}
+	\includesvg{lect1/pic1.svg}
+\end{center}
+
+By dividing on $y$, we bound the error by the size of each interval, $\epsilon$:
+$$g(x) = s\chi_{A_1} + \qty(s+\epsilon)\chi_{A_2} + \dots$$
+$$\forall x \quad \abs{g(x)-f(x)} \leq \epsilon
+$$
+\section{Measure}
+For $A\subseteq \mathbb{R}$ we want to define size of $A$ which we will denote $\lambda(A)$. What do we require from $\lambda$?
+\begin{enumerate}
+	\item $\lambda(\qty[a,b]) = b- a$
+	\item $0\leq \lambda(A) \leq \infty$
+	\item $\lambda(\emptyset) = 0$
+	\item If $A = \bigcup_{k=1}^\infty A_k$ and $\forall i,j \quad A_i \cap A_j = \emptyset$, then $\lambda(A) = \sum_{i=1}^\infty \lambda(A_k)$.
+	\item $\lambda(A+x) = \lambda(A)$, where $A+x = \left\{s+x: a\in A \right\}$.
+\end{enumerate}
+
+From those properties we get additional properties:
+\begin{itemize}
+	\item Additivity:
+	$$A = \bigcupdot_{i=1}^n A_i  \Rightarrow \lambda(A) = \sum_{i=1}^n \lambda(A_i)$$
+	\item  If $A \subseteq B$, then $\lambda(A) \leq \lambda(B)$.
+\end{itemize}
+\paragraph{Theorem} Function $\lambda$ fulfilling 1-5 and defined on every subset of $\mathbb{R}$ doesn't exist.
+\subparagraph{Proof}
+Suppose there exists such $\lambda$.
+
+Define equivalence relation $x\sim y$ iff $x-y \in \mathbb{Q}$. Define $E$ choose from each equivalence class one representative from $\qty[0, \frac{1}{2}]$. Note that if $q_1\neq q_2$, then $q_1+E \cap q_2 + E = \emptyset$, since else $e_1-e_2=q_1-q_2$ and $e_1\sim e_2$, in contradiction.
+
+From definition $E \subset \qty[0, \frac{1}{2}]$. Take a look at
+$$\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) \subseteq \qty[0,1]$$
+Thus
+$$\lambda \qty(\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) ) \leq \lambda\qty([0,1])=1$$
+On the other hand
+$$\lambda \qty(\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) ) = \sum_{k=2}^\infty \lambda\qty(\frac{1}{k}+E) ) = \lambda\qty(E) )$$
+Thus $\lambda(E)=0$. However, 
+$$\mathbb{R} = \bigcupdot_{r\in \mathbb{Q}} r+E$$
+From sigma-additivity
+$$\lambda(\mathbb{E}) = \sum_{r\in \mathbb{Q}} \lambda(r+E) = 0$$
+But $\lambda(\mathbb{R}) \geq \lambda([0,1])$, in contradiction.

@@ -1,0 +1,116 @@
+\paragraph{Reqirements for measure in $\mathbb{R}$}
+
+\begin{enumerate}
+	\item $0\leq \lambda(E) \leq \infty$
+	\item $\lambda(\emptyset) = 0$
+	\item $\lambda(\qty[a_1,b_1]\cross\qty[a_2,b_2]\cross\dots\cross \qty[a_n,b_n]) = \prod_{i=1}^n (b_i-a_i)$
+	\item If $A = \bigcupdot_{k=1}^\infty A_k$, then $\lambda(A) = \sum_{i=1}^\infty \lambda(A_k)$.
+	\item If $C$ is acquired from $A$ by rotation or translation $\lambda(C) = \lambda(A)$.
+\end{enumerate}
+\paragraph{Note} In $\mathbb{R}^3$ it is impossible to define measure that fulfills those requirements eve if we replace sigma-additivity with additivity.
+\paragraph{Banach–Tarski paradox} Denote $B$ -- unit ball in $\mathbb{R}^3$. We can write 
+$$B = \bigcupdot_{i=1}^5 A_i$$
+and find $C_i$ by rotation or translation of $A_i$ such that $\bigcupdot_{i=1}^5 C_i$ is two unit balls.
+
+\begin{center}
+	\includesvg{lect2/pic1.svg}
+\end{center}
+\subsection{Construction of $\lambda$}
+\paragraph{Special boxes} 
+Let $E$ box with edges parallel to axes:
+$$E = \qty[a_1,b_1]\cross\qty[a_2,b_2]\cross\dots\cross \qty[a_n,b_n]$$
+
+For $E$ we define 
+ $$\lambda(E) = \prod_{i=1}^n (b_i-a_i)$$
+ 
+ \paragraph{Special polygons} is a finite union of special boxes. 
+ \subparagraph{Note} Each special polygon is a finite union of special boxes with disjoint interior.
+ 
+ Let $P$ is special polygon written as $P = \bigcap_{i=1}^k A_i$ where $A_i$ is special box and their interior is disjoint.
+ $$\lambda(P) = \sum_{i=1}^k \lambda(A_i)$$
+ \paragraph{Claim}
+ \begin{enumerate}
+ 	\item The definition is independent on choice of $A_i$.
+ 	\item If $P_1$, $P_2$ are special polygons and $P_1\subseteq P_2$ then $\lambda(P_1)\leq \lambda(P_2)$.
+ 	\item If $P_1$, $P_2$ are  special polygons with disjoint interior then
+ 	$$\lambda(P_1\cup P_2) =  \lambda(P_1)+\lambda(P_2)$$
+ 	\item For all $x\in \mathbb{R}^n$ 
+ 	$$\lambda(x+P) = \lambda(P)$$
+ \end{enumerate}
+ \subparagraph{Proof}
+  \begin{enumerate}
+ 	\item Let $P = \bigcap A_i = \bigcap B_i$.
+ 	
+ 	If we continue edges of both $A_i$ and $B_i$ we'll get net which divides $P$ into $C_i$ which refines both $A_i$ and $B_i$ and thus
+ 	$$\lambda(P) = \sum_i \lambda(A_i) = \sum_i \lambda(B_i) = \sum_i \lambda(C_i)$$ 
+ 	\item Let $P_2= \bigcap A_i$ and choose the refinement which divides $P_1$. 
+ 	\item Find $A_i$ which divides both $P_1$ and $P_2$.
+ 	\item $\dots$
+ \end{enumerate}
+\subparagraph{Alternative proof}
+For special boxes
+$$\lambda(E) = \lim_{N\to \infty} \frac{1}{N^n} \abs{E \cap \frac{1}{N}\mathbb{Z}^n}$$
+
+For $n=1$, $I=[a,b] \subseteq \mathbb{R}$. We claim
+$$b-a = \lim_{N\to \infty} \frac{1}{N} \abs{E \cap \frac{1}{N}\mathbb{Z}}$$
+First of all
+$$b-a-1 \leq \abs{[a,b] \cap \mathbb{Z}} \leq b-a+1$$
+To find $\abs{[a,b] \cap \frac{1}{2}\mathbb{Z}}$, we can use $\abs{[2a,2b] \cap \mathbb{Z}}$, which means
+
+$$2b-2a-1 \leq \abs{E \cap \frac{1}{2}\mathbb{Z}} \leq 2b-2a+1$$
+
+And for any $N$:
+$$Nb-Na-1 \leq \abs{[a,b] \cap \frac{1}{N}\mathbb{Z}} \leq Nb-Na+1$$
+$$b-a-\frac{1}{N} \leq \frac{1}{N}\abs{[a,b] \cap \frac{1}{N}\mathbb{Z}} \leq b-a+\frac{1}{N}$$
+By sandwich rule, we get the equality.
+
+We can do the same for higher dimension and for open sets, and then we can easily proof the claim.
+
+If $P$ is special polygon and we take $\lim_{N\to \infty} \frac{1}{N^n} \abs{P \cap \frac{1}{N}\mathbb{Z}^n} = \sum \lambda(A_i) $
+when $P=\bigcap A_i$
+
+\paragraph{Open sets}
+\subparagraph{Definition} $G$ is open if $\forall x\in G$ exists ball $B(x,r)$ such that $B\subset G$. Alternatively we can replace ball with special box.
+
+Thus for any open $G\neq \emptyset$ 
+$$G = \bigcup \left\{ P \text{ special polygon}  \right\}$$
+
+And we can define
+$$\lambda(G) = \sup \left\{ \lambda(P) | P\subseteq G \right\}$$
+
+\paragraph{Claim}
+\begin{enumerate}
+	\item $$0 \leq \lambda(G) \leq \infty$$
+	\item $$\lambda(G) = 0 \iff G =\emptyset$$
+	\item $$\lambda(\mathbb{R}^n) = \infty$$
+	\item $$G_1 \subseteq G_2 \Rightarrow \lambda(G_1) \leq \lambda(G_2)$$
+	\item $$\lambda\qty(\bigcup_{k=1}^\infty G_k) \leq \sum \lambda(G_k)$$
+	\item $$\lambda\qty(\bigcupdot_{k=1}^\infty G_k) = \sum \lambda(G_k)$$
+	\item $$\lambda(P) = \lambda(\inter P ) \inf \left\{ \lambda(G) : P\subseteq G\right\}$$
+	\item $$\lambda(x+G) = \lambda(G)$$
+\end{enumerate}
+
+\subparagraph{Lemma}
+Let $K\subseteq \mathbb{R}^n$ compact set and $\left\{ G_i \right\}_{i\in I}$ open cover ($K\subseteq \bigcup G_i$). Then exists $\epsilon>0$ such that $\forall x\in K$ exists $i\in I$ such that $B(x,\epsilon) \subseteq G_i$.
+
+\subparagraph{Claim}
+\begin{enumerate}
+	\item Obvious
+	\item If $G$ is not empty, exists $x\in G$ and special box around $x$ such that $P\subseteq G$and thus $\lambda(G) \leq \lambda(P) > 0$
+	\item Any box is subset of $\mathbb{R}^n$ thus $\lambda(\mathbb{R}^n) = \infty$
+	\item Obvious
+	\item Let $P$ special polygon, $P\subseteq \bigcup_{k=1}^\infty G_k$. We'll show that it's possible to write 
+	$$P = \bigcup_{j=1}^N I_j$$
+	finite union of special boxes with disjoint interior and for each $j$ exists $k$ such that $I_j \subset G_k$. Let $\epsilon$ from lemma for $K=P$. Write $P=\bigcup_{j=1}^N = I_j$ such that diameter of each $I_j<\epsilon$. If $x_j$ is center of $I_j$, then $I_j \subseteq B(x_j,\epsilon) \subseteq G_k$.
+	
+	If this is possible, for such $P$ denote $$P_k =  \bigcup_{j=1}^\infty I_j | I_j \subset G_k, \forall i<k \quad I_j \not\subset G_i$$
+	
+	Obviously $\bigcup P_k = P$ and union is finite since for some $m$, for every $k>m$ $P_m=\emptyset$, because there is finite number of $I_j$, and also internals of $P_k$ are disjoint.
+	
+	Thus $\lambda(P)=\sum \lambda(P_k)\leq\sum \lambda(G_k)$.
+	This is right for any $P$, thus
+	$$ \lambda\qty(\bigcup (G_k)) = \sup \left\{ \lambda(P) | P\subseteq \bigcup (G_k) \right\} \leq \sum_{k=1}^\infty \lambda(G_k)$$
+	\item $\dots$
+	\item $\dots$
+	\item Obvious since it's right for polygons
+\end{enumerate}

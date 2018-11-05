@@ -13,7 +13,7 @@ $$B = \bigcupdot_{i=1}^5 A_i$$
 and find $C_i$ by rotation or translation of $A_i$ such that $\bigcupdot_{i=1}^5 C_i$ is two unit balls.
 
 \begin{center}
-	\includesvg{lect2/pic1.svg}
+	\includesvg{lect2/l2pic1.svg}
 \end{center}
 \subsection{Construction of $\lambda$}
 \paragraph{Special boxes} 
@@ -86,14 +86,38 @@ $$\lambda(G) = \sup \left\{ \lambda(P) | P\subseteq G \right\}$$
 	\item $$G_1 \subseteq G_2 \Rightarrow \lambda(G_1) \leq \lambda(G_2)$$
 	\item $$\lambda\qty(\bigcup_{k=1}^\infty G_k) \leq \sum \lambda(G_k)$$
 	\item $$\lambda\qty(\bigcupdot_{k=1}^\infty G_k) = \sum \lambda(G_k)$$
-	\item $$\lambda(P) = \lambda(\inter P ) \inf \left\{ \lambda(G) : P\subseteq G\right\}$$
+	\item $$\lambda(P) = \lambda(\inter P ) =\inf \left\{ \lambda(G) : P\subseteq G\right\}$$
 	\item $$\lambda(x+G) = \lambda(G)$$
 \end{enumerate}
 
-\subparagraph{Lemma}
+\begin{lemma}
 Let $K\subseteq \mathbb{R}^n$ compact set and $\left\{ G_i \right\}_{i\in I}$ open cover ($K\subseteq \bigcup G_i$). Then exists $\epsilon>0$ such that $\forall x\in K$ exists $i\in I$ such that $B(x,\epsilon) \subseteq G_i$.
+\end{lemma}
+\begin{lemma} \label{lemma_poly_inf}
+	For all polygon of dimension $P$ 
+	$$\lambda(P) = \inf \left\{ \lambda(G) : P\subset G  \right\}$$
 
-\subparagraph{Claim}
+\end{lemma}
+	\begin{proof}
+	$$P \subseteq G \Rightarrow \lambda(P) \leq \lambda(G)$$
+	Infimum would give
+	$$\lambda(P) \leq \inf \left\{ \lambda(G) : P\subset G  \right\}$$
+	
+	
+	Write $P = \bigcup_{k=1}^N I_k$. Then
+	$$\lambda(P)  =\sum_{k=1}^N \lambda(I_k)$$
+	For $\epsilon$ find $I_k^\epsilon$ such that
+	$$\begin{cases}
+	\inter I_k^\epsilon \supseteq I_k\\
+	\lambda(I_k^\epsilon) \leq \lambda(I_k) + \frac{\epsilon}{N}
+	\end{cases}$$
+	Denote $G = \bigcup_{k=1}^N \inter (I_k^\epsilon)$, then, from subadditivity
+	$$\lambda(G) \leq \sum_{k=1}^N \lambda (\inter I_k^\epsilon) = \sum_{k=1}^N \lambda (I_k^\epsilon) \leq \epsilon + \sum_{k=1}^N \lambda(I_k) $$
+	
+	In addition,
+	$$\inf \lambda(G) \leq \lambda(P) $$
+\end{proof}
+\subparagraph{Proof} %TODO
 \begin{enumerate}
 	\item Obvious
 	\item If $G$ is not empty, exists $x\in G$ and special box around $x$ such that $P\subseteq G$and thus $\lambda(G) \leq \lambda(P) > 0$
@@ -110,7 +134,27 @@ Let $K\subseteq \mathbb{R}^n$ compact set and $\left\{ G_i \right\}_{i\in I}$ op
 	Thus $\lambda(P)=\sum \lambda(P_k)\leq\sum \lambda(G_k)$.
 	This is right for any $P$, thus
 	$$ \lambda\qty(\bigcup (G_k)) = \sup \left\{ \lambda(P) | P\subseteq \bigcup (G_k) \right\} \leq \sum_{k=1}^\infty \lambda(G_k)$$
-	\item $\dots$
-	\item $\dots$
+	\item Since we have sigma-subadditivity, we need only one direction of inequality:
+	$$\lambda(G_k) = \sup\left\{ \lambda(P) : P\subseteq G_k \right\}$$
+	For any $N$
+	$$\sum_{k=1}^N \lambda(G_k) = \sup\left\{ \sum_{k=1}^N \lambda(P_k) : P_k\subseteq G_k \right\} = \sup\left\{ \lambda\qty(\bigcupdot_{k=1}^N P_k) : P_k\subseteq G_k \right\} \leq \lambda\qty(\bigcupdot_{k=1}^N G_k) \leq \lambda\qty(\bigcupdot_{k=1}^\infty G_k) $$
+	i.e.,
+	$$\sum_{k=1}^\infty \lambda(G_k)  \leq \lambda\qty(\bigcupdot_{k=1}^\infty G_k) $$
+	\item First, proof that $\lambda(P) = \lambda(\inter P)$. If $I=P$ is non-empty special box $I = [a_1,b_1]\times [a_2,b_2]\times \dots \times [a_n,b_n]$. For any $\epsilon>0$, $I_\epsilon = [a_1+\epsilon,b_1-\epsilon]\times [a_2+\epsilon,b_2-\epsilon]\times \dots \times [a_n+\epsilon,b_n-\epsilon]$. $I_\epsilon \subseteq \inter I$.
+	
+	That means that $\lambda(I_\epsilon) \leq \lambda(\inter I)$. Obviously, $\lambda(I_\epsilon)\to \lambda(I)$, i.e. $\lambda(I) \leq \lambda(\inter I)$.
+	
+	Generally, for $P = \bigcup_{k=1}^N I_k$, 
+	$$\inter P \geq \bigcup_{k=1}^N \inter I_k$$
+	thus
+	$$\lambda(\inter P) \geq \lambda \qty(\bigcup_{k=1}^N \inter I_k) = \sum_{k=1}^N \lambda(\inter I_k) \geq \sum_{k=1}^N \lambda(I_k) = \lambda(P)$$
+	For any $P$ 
+	$$\lambda(\inter P) \geq \lambda P$$
+	
+	However
+	$$\lambda(\inter P) = \sum \left\{ \lambda(Q) : Q \subseteq \inter P  \right\}$$
+	$$Q \subseteq P \Rightarrow \lambda(Q) \leq \lambda(P) \Rightarrow \lambda(\inter P) \leq \lambda(P)$$
+	
+	Second part is obvious from Lemma \ref{lemma_poly_inf}.
 	\item Obvious since it's right for polygons
 \end{enumerate}

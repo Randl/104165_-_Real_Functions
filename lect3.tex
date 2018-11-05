@@ -1,0 +1,104 @@
+\subsection{Compact sets}
+\begin{definition}
+	For compact $K \subseteq \mathbb{R}^n$
+	$$\lambda(K) = \inf \left\{ \lambda(G) : K\subseteq G \quad G \text{ is open} \right\}$$
+\end{definition}
+\begin{prop}
+	$$0 \leq \lambda(K) < \infty$$
+\end{prop}
+\begin{proof}
+	Each $K$ is subset of open box $A$ and $\lambda(A) < \infty$
+\end{proof}
+\begin{prop}
+	$$K_1 \subseteq K_2 \Rightarrow \lambda(K_1) \leq \lambda(K_2)$$
+\end{prop}
+\begin{proof}
+	Obvious
+\end{proof}
+\begin{prop}
+	Subadditivity
+	$$\lambda(K_1 \cup K_2) \leq \lambda(K_1) + \lambda(K_2)$$
+\end{prop}
+\begin{proof}
+$$K_i \subseteq G_i$$
+$$K_1 \cup K_2 \subseteq G_1 \cup G_2$$
+$$\lambda(K_1 \cup K_2) \leq \lambda(G_1 \cup G_2) \leq \lambda(G_1) + \lambda( G_2)$$
+Thus
+$$\lambda(K_1 \cup K_2) \leq \lambda(K_1) + \lambda(K_2)$$
+\end{proof}
+\begin{prop}
+	$$K_1 \cup K_2 = \emptyset \Rightarrow \lambda(K_1 \cup K_2) = \lambda(K_1) + \lambda(K_2)$$
+\end{prop}
+\begin{proof}
+For $K_1$, $K_2$ exists $\epsilon>0$ such that $\forall \: x \in K_1 \: y \in K_2$, $d(x,y)\geq\epsilon$. Denote 
+$$U_i = \bigcup_{x\in K_i} B\qty(x, \frac{\epsilon}{2}) \supset K_i$$
+Let $K_1 \cup K_2 \subset G_i$, since  $K_i \subset U_i$, 
+$$K_i \subset G \cap U_i$$
+i.e.,
+$$\forall i \quad \lambda(K_i) \leq \lambda(G\cap U_i)$$
+
+Since $U_1 \cap U_2 = \emptyset$ (from construction)
+$$(G\cap U_1) \cap (G \cap U_2) = \emptyset$$
+$$\lambda(G\cap U_1) + \lambda (G \cap U_2) = \lambda \qty\big((G\cap U_1) \cap (G \cap U_2)) \leq \lambda(G)$$
+Thus
+$$\lambda(G) \geq \lambda(G\cap U_1) + \lambda (G \cap U_2) \geq \lambda(K_1)+\lambda(K_2)$$
+i.e.,
+$$\lambda(K_1\cup K_2) \geq \lambda(K_1)+\lambda(K_2)$$
+\end{proof}
+
+\subsection{General sets}
+Define outer and inner measure similar to Darboux sums:
+$$\lambda^*(A) = \inf \left\{ \lambda(G) : A\subset G \text{, open} \right\}$$
+$$\lambda_*(A) = \sup \left\{ \lambda(K) : A\supset G \text{, compact} \right\}$$
+
+\begin{prop}
+	$$\lambda_*(A) \leq \lambda^*(A)$$
+\end{prop}
+\begin{proof}
+	If $G$ is open and $K$ compact and $K\subset A\subset G$ then $K\subset G$, i.e. $\lambda(K) \leq \lambda(G)$. From that, taking supremum on $K$ and infimum on $G$, we get the required result.
+\end{proof}
+\begin{prop}
+$$A\subset B \Rightarrow \lambda^*(A) \leq \lambda^*(B) \quad \lambda_*(A) \leq \lambda_*(B)$$
+\end{prop}
+\begin{proof}
+Obvious.
+\end{proof}
+\begin{prop}
+$$\lambda^*\qty(\bigcup_{k=1}^\infty A_k) \leq \sum_{k=1}^\infty \lambda^*(A_k)$$
+\end{prop}
+
+\begin{proof}
+	
+	$$\lambda^*(A) = \inf \left\{ \lambda(G) : A\subset G \text{, open} \right\}$$
+	Thus exists $G_k$ such that
+	$$\lambda(G_k) < \lambda^*(A_k) + \frac{\epsilon}{2^k}$$
+	$$\lambda^*\qty(\bigcup_{k=1}^\infty A_k) \leq \lambda\qty(\bigcup_{k=1}^\infty G_k) \leq \sum_{k=1}^\infty \lambda\qty(G_k) < \sum_{k=1}^\infty \qty(\lambda^*\qty(A_k) + \frac{\epsilon}{2^k}) =\lambda^*\qty(A_k) + \epsilon $$
+\end{proof}
+\begin{prop}
+For disjoint $A_k$
+$$\lambda^*\qty(\bigcupdot_{k=1}^\infty A_k) \geq \sum_{k=1}^\infty \lambda^*(A_k)$$
+\end{prop}
+
+
+\begin{proof}
+	For all $i$ choose $K_i \subseteq A_i$. Choose some $N$, then
+	$$\bigcup_{k=1}^N K_k \subseteq \bigcup_{k=1}^\infty A_k$$
+	Since $\bigcup_{k=1}^N K_k$ is compact, 
+	$$\lambda_*\qty(\bigcup_{k=1}^\infty A_n) \geq \lambda\qty(\bigcup_{k=1}^N K_k)  = \sum_{k=1}^N \lambda(K_k)$$ 
+	By taking supremum on $K_i$, we get
+	$$\lambda_*\qty(\bigcup_{k=1}^\infty A_n) \geq \sum_{k=1}^N \lambda_*\qty(A_n)$$
+\end{proof}
+\begin{prop}
+	If $A$ is open or compact then
+	$$\lambda(A) = \lambda^*(A) = \lambda_*(A)$$
+\end{prop}
+
+
+\begin{proof}
+	If $A$ is compact, obviously $\lambda_*(A) = \lambda(A)$, and $\lambda^*(A) = \lambda(A)$ by definition.
+	
+	For open $A$, obviously $\lambda(A)=\lambda^*(A)$. In addition, for any special polygon $P \subset A$, $\lambda(P) \leq \lambda_*(A)$. However
+	$$\lambda^*(A)  = \lambda(A) = \sup \left\{ \lambda(P) : P\subseteq A \right\} \leq \lambda_*(A)$$
+	meaning
+	$$\lambda^*(A)  = \lambda(A) =  \lambda_*(A)$$
+\end{proof}

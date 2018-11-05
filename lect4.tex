@@ -1,0 +1,78 @@
+Denote $$\mathcal{L}_0 = \left\{ A\subset\mathbb{R}^n :: \lambda^*)A_=\lambda_*(A) < \infty  \right\}$$
+All compact sets and all open set with finite measure are in $\mathcal{L}_0$.
+\begin{prop}
+	$$\lambda_*(A) = \lambda_*(A+x)$$
+	$$\lambda^*(A) = \lambda^*(A+x)$$
+\end{prop}
+
+\begin{definition}
+	For set in $\mathcal{L}_0$, $\lambda(A)=\lambda^*(A)=\lambda_*(A)$.
+\end{definition}
+\begin{lemma}
+	If $A,B \in \mathcal{L}_0$ and $A\cap B = \emptyset$ then $A\cup B \in \mathcal{L}_0$ and 
+	$$\lambda(A\cup B) = \lambda(A)+\lambda(B)$$
+\end{lemma}
+\begin{proof}
+	$$\lambda^*(A\cup B) \leq \lambda^*(A)+ \lambda^*(B) = \lambda(A) + \lambda(B) = = \lambda_*(A) + \lambda_*(B) \leq \lambda_*(A\cup B)  \leq \lambda^*(A\cup B) $$
+\end{proof}
+\begin{theorem}
+	$A\subseteq \mathbb{R}^n$ with $\lambda^*(A)<\infty$. $A \in \mathcal{L}_0$ iff for all $\epsilon > 0 $ exists compact $K$ and open $G$, $K\subseteq A \subseteq G$ and $\lambda(G\setminus K) < \epsilon$
+	
+	
+	\begin{proof}
+		$\Rightarrow$:
+		
+		Let  $A \in \mathcal{L}_0$ . We can find compact $K$ and open $G$, $K\subseteq A \subseteq G$ such that
+		$$\lambda(G) < \lambda^*(A) +\frac{\epsilon}{2}$$
+		$$\lambda(K) > \lambda_*(A) - \frac{\epsilon}{2}$$
+		Note that, by lemma
+		$$\lambda(G) = \lambda(K) + \lambda(G\setminus K)$$
+		$$\lambda(G\setminus K) = \lambda(G) -\lambda(K) < \epsilon$$
+		
+		
+		$\Leftarrow$:
+		
+		$$\lambda^*(A) \leq \lambda(G) = \lambda(K) + \lambda(G\setminus K) <\lambda(K)+\epsilon \leq \lambda_*(A) +\epsilon $$
+		Thus $\lambda^*(A)  = \lambda_*(A) $ and $A \in \mathcal{L}_0$.
+	\end{proof}
+\begin{coll}
+	If $A,B\in \mathcal{L}_0$, then $A\cup B, A\cap B, A\setminus B  \in \mathcal{L}_0$
+	\begin{proof}
+		First, show that $A\setminus B \in \mathcal{L}_0$.
+		Take $K_1\subseteq A\subseteq G_1$ and $K_2 \subseteq A\subseteq G_2$.
+		$$\lambda(G_1\setminus K_1) < \frac{\epsilon}{2}$$
+		$$\lambda(G_2\setminus K_2) < \frac{\epsilon}{2}$$
+		
+		Denote $K = K_1\setminus G_2$ and $G = G_1 \setminus K_2$.
+		$$K\subseteq A\setminus B \setminus G$$
+		$$G\setminus K = (G_1\setminus K_1) \cup (G_2\setminus K_2)$$
+		$$\lambda(G\setminus K)  \leq \lambda(G_1\setminus K_1) + \lambda(G_2\setminus K_2) < \epsilon$$
+		
+		Now
+		$$A\cup B = (A\setminus B) \cup B \in \mathcal{L}_0$$
+		$$A\cap B = A\setminus (A\setminus B)   \in \mathcal{L}_0$$
+	\end{proof}
+\end{coll}
+\end{theorem}
+
+\begin{theorem}
+	Let $\left\{ A_k \right\}$ set in $\mathcal{L}_0$ and $A \bigcup_{k=1}^\infty A_k$ such that $\lambda^*(A) < \infty$ then $A\in \mathcal{L}_0$ and 
+	$$\lambda(A) \leq \sum_{k=1}^\infty \lambda(A_k)$$
+		In addition, if $A_i\cap A_j = \emptyset$,
+		$$\lambda(A) = \sum_{k=1}^\infty \lambda(A_k)$$
+	\begin{proof}
+		Suppose $\left\{ A_k \right\}$ are disjoint.
+		$$\lambda^*(A) \leq \sum_{k=1}^\infty \lambda^*(A_k) = \sum_{k=1}^\infty \lambda_*(A_k) \leq \lambda_*(A)$$
+		
+		Thus $A\in \mathcal{L}_0$ and
+		$$\lambda(A) = \lambda^*(A) =  \sum_{k=1}^\infty \lambda^*(A_k) =  \sum_{k=1}^\infty \lambda(A_k)$$
+		
+		Now generally, define $$B_1 = A_1 \in \mathcal{L}_0$$
+		$$B_2 = A_2 \setminus A_1$$
+		and so on:
+		$$B_k = A_k \setminus \bigcup_{i=1}^{k-1} A_i \in \mathcal{L}_0 $$
+		
+		Now $\left\{ B_k \right\} $ are disjoint and $A = \bigcup_{k=1}^\infty A_k = \bigcup_{k=1}^\infty B_k \in \mathcal{L}_0 $. Thus
+		$$\lambda(A) = \lambda\qty(\bigcup_{k=1}^\infty A_k)=\lambda\qty(\bigcup_{k=1}^\infty B_k) = \sum_{k=1}^\infty \lambda(B_k) \leq \sum_{k=1}^\infty \lambda(A_k)  $$
+	\end{proof}
+\end{theorem}

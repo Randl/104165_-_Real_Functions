@@ -30,20 +30,23 @@ From those properties we get additional properties:
 	$$A = \bigcupdot_{i=1}^n A_i  \Rightarrow \lambda(A) = \sum_{i=1}^n \lambda(A_i)$$
 	\item  If $A \subseteq B$, then $\lambda(A) \leq \lambda(B)$.
 \end{itemize}
-\paragraph{Theorem} Function $\lambda$ fulfilling 1-5 and defined on every subset of $\mathbb{R}$ doesn't exist.
-\subparagraph{Proof}
-Suppose there exists such $\lambda$.
-
-Define equivalence relation $x\sim y$ iff $x-y \in \mathbb{Q}$. Define $E$ choose from each equivalence class one representative from $\qty[0, \frac{1}{2}]$. Note that if $q_1\neq q_2$, then $q_1+E \cap q_2 + E = \emptyset$, since else $e_1-e_2=q_1-q_2$ and $e_1\sim e_2$, in contradiction.
-
-From definition $E \subset \qty[0, \frac{1}{2}]$. Take a look at
-$$\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) \subseteq \qty[0,1]$$
-Thus
-$$\lambda \qty(\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) ) \leq \lambda\qty([0,1])=1$$
-On the other hand
-$$\lambda \qty(\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) ) = \sum_{k=2}^\infty \lambda\qty(\frac{1}{k}+E) ) = \lambda\qty(E) )$$
-Thus $\lambda(E)=0$. However, 
-$$\mathbb{R} = \bigcupdot_{r\in \mathbb{Q}} r+E$$
-From sigma-additivity
-$$\lambda(\mathbb{E}) = \sum_{r\in \mathbb{Q}} \lambda(r+E) = 0$$
-But $\lambda(\mathbb{R}) \geq \lambda([0,1])$, in contradiction.
+\begin{theorem}Function $\lambda$ fulfilling 1-5 and defined on every subset of $\mathbb{R}$ doesn't exist.
+	\begin{proof}
+		
+		Suppose there exists such $\lambda$.
+		
+		Define equivalence relation $x\sim y$ iff $x-y \in \mathbb{Q}$. Define $E$ choose from each equivalence class one representative from $\qty[0, \frac{1}{2}]$. Note that if $q_1\neq q_2$, then $q_1+E \cap q_2 + E = \emptyset$, since else $e_1-e_2=q_1-q_2$ and $e_1\sim e_2$, in contradiction.
+		
+		From definition $E \subset \qty[0, \frac{1}{2}]$. Take a look at
+		$$\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) \subseteq \qty[0,1]$$
+		Thus
+		$$\lambda \qty(\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) ) \leq \lambda\qty([0,1])=1$$
+		On the other hand
+		$$\lambda \qty(\bigcup_{k=2}^\infty \qty(\frac{1}{k}+E) ) = \sum_{k=2}^\infty \lambda\qty(\frac{1}{k}+E) ) = \lambda\qty(E) )$$
+		Thus $\lambda(E)=0$. However, 
+		$$\mathbb{R} = \bigcupdot_{r\in \mathbb{Q}} r+E$$
+		From sigma-additivity
+		$$\lambda(\mathbb{E}) = \sum_{r\in \mathbb{Q}} \lambda(r+E) = 0$$
+		But $\lambda(\mathbb{R}) \geq \lambda([0,1])$, in contradiction.
+	\end{proof}
+\end{theorem}

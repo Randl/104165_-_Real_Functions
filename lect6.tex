@@ -1,0 +1,100 @@
+\begin{prop}
+	If $A$ is measurable then $\lambda(A)=\lambda^*(A)=\lambda_*(A)$.
+	\begin{proof}
+		If $\lambda^*(A)<\infty$ we've already seen this.
+		
+		Suppose $\lambda^(A)=\infty$. Thus $\inf \left\{  \lambda(G) : A\subseteq G \right\} =\infty$. By previous theorem exists closed $F$ such that $F\subseteq A\subseteq G$ and $\lambda(G\setminus A) \leq 1$. 
+		
+		
+		$$\infty = \lambda(G) = \lambda(G\setminus A) + \lambda(A) \leq \aa,bda(G\setminus F) + \lambda(A) \leq 1+\lambda(A)$$
+		Thus, $\lambda(A)=\infty$.
+		
+		Now, take a look at $\left\{ A\cap B(0,N)   \right\}_{N}$. 
+		$$\infty = \lambda(A) = \lambda\qty(\bigcup_N (A\cap B(0,N))) = \lim_{N\to \infty} \lambda\qty(A\cap B(0,N)) $$
+		$$\infty \leftarrow \lambda(A\cap B(0,N)) = \lambda_*(A\cap B(0,N)) \leq \lambda_*(A)$$
+	\end{proof}
+\end{prop}
+
+\paragraph{Reminder}
+We've built $E\subseteq \qty[0,\frac{1}{2}]$ such that $q+E : q\in \mathbb{Q}$ is disjoint. And 
+$$\forall k \in \mathbb{N} \: \frac{1}{k} + E \subseteq[0,1]$$
+$$\bigcup_{q\in \mathbb{Q} } q+E=\mathbb{R}$$
+
+\begin{prop}
+	$E$ is not measurable
+	\begin{proof}
+		$$\bigcup_{k=2 }^\infty \qty(\frac{1}{k}+E)\subseteq [0,1]$$
+		$$1 = \lambda_*\qty(\bigcup_{k=2 }^\infty \qty(\frac{1}{k}+E)) \geq \sum_{k=2}^\infty \lambda_*\qty(\frac{1}{k}+E) $$
+		i.e., $\lambda_*(E)= 0$.
+		On the other hand
+		
+		$$\infty = \lambda^*(\mathbb{R}) = \lambda^*\qty(\bigcup_{q\in \mathbb{Q} } q+E) \leq \sum_q \lambda^*(q+E) = \sum_q \lambda^*(E)$$
+		
+		Thus $\lambda^*(E) > 0$, i.e., $E$ is not measurable.
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+	For any measurable $A\subseteq \mathbb{R}$ such that $\lambda(A)>0$, exists non-measurable $B\subseteq A$.
+	
+	\begin{proof}
+		We've seen that
+		$$\bigcup_{q\in \mathbb{Q} } q+E=\mathbb{R}$$
+		thus 
+		$$A = \bigcup_{q\in \mathbb{Q} } A\cap (q+E)$$
+		
+		$$0 \leq \lambda^*(A) = \lambda^*\qty(\bigcup_{q\in \mathbb{Q} } A\cap (q+E)) \leq \sum_q \lambda^*(A \cap (q+E))$$
+		
+		Thus  exists $q_0$ such that $0 < \lambda^*\qty(A\cap (q+E))$, denote
+		$$B = A \cap (q_0+E)$$
+		$$\lambda_*(B) \leq \lambda_*(q_0+E) = \lambda_*(E) = 0$$
+		i.e. $B\notin \mathcal{L}$.
+		
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+	$B$ measurable, $A\subseteq B$, then
+	$$\lambda^*(A) + \lambda_*(B\setminus A) = \lambda(B)$$
+	\begin{proof}
+		$$\lambda^*(A) = \inf\left\{ \lambda(G) : A\cap G   \right\} $$
+		$$\lambda(G) + \lambda_*(B\setminus A) \geq \lambda(G) + \lambda_*(B\setminus B) = \lambda(G) + \lambda(B\setminus G) \geq \lambda(B)$$
+		
+		
+		On the other hand, for any $K\subseteq B\setminus A$
+		$$\lambda^*(A) + \lambda(K) \leq \lambda(B\setminus K)+ \lambda(K) = \lambda(B)$$
+		By taking supremum on $K$, we get
+		$$\lambda^*(A) + \lambda(B\setminus A) \leq  \lambda(B)$$
+	\end{proof}
+
+
+\end{prop}
+
+\begin{prop}[Carath\'{e}odory's condition]
+	$$A\subseteq \mathbb{R}^n \text{ measurable} \iff \forall E\subseteq \mathbb{R}^n \quad \lambda^*(E) = \lambda^*(E\cap A)+\lambda^*(E\setminus A)$$
+	
+	\begin{proof}
+		$\Rightarrow$:
+		
+		Let $A$ measurable set. Choose general $E$. For open $G\supset E$,
+		$$\lambda(G) = \lambda(G\cap A) + \lambda(G\setminus A) \geq \lambda^*(E\cap A)+ \lambda^*(E\setminus A)$$
+		
+		Since it's right for any $G$, by taking infimum:
+		$$\lambda^*(E) \geq \lambda^*(E\cap A) + \lambda^*(E\setminus A) $$
+		And by subadditivity
+		$$\lambda^*(E) \leq \lambda^*(E\cap A) + \lambda^*(E\setminus A) $$
+		i.e.,
+		$$\lambda^*(E) = \lambda^*(E\cap A) + \lambda^*(E\setminus A) $$
+		
+		$\Leftarrow$:
+		
+		Suppose the condition is right for $A$. Let $M\in \mathcal{L}_0$, then
+		$$\lambda(M) = \lambda^*(M\cap A) + \lambda^*(M\setminus A)$$
+		From previous proposition
+		$$\lambda(M) = \lambda^*(M\cap A) + \lambda_*(M\setminus A)$$
+		
+		Thus
+		$$\lambda_*(M\setminus A) = \lambda^*(M\setminus A)$$
+		and thus $M\setminus A \in \mathcal{L}_0$, i.e. $A\in \mathcal{L}$.
+	\end{proof}
+\end{prop}

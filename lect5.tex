@@ -1,0 +1,193 @@
+\paragraph{Note}Any ball $B(0,R)$ is in $\mathcal{L_0}$, since it is inside special box large enough.
+\begin{definition}
+	Let $A\subseteq \mathbb{R}^n$, we say $A$ is Lebesgue measurable if $\forall M\in \mathcal{L}_0 \quad A\cap M \in \mathcal{L}_0$. It's measure equals
+	$$\lambda(A) = \sup \left\{ \lambda(A\cap M), M \in \mathcal{L}_0 \right\}$$
+	
+	Denote a set of all such sets as $\mathcal{L}$.
+\end{definition}
+\begin{prop}
+	If $\lambda^*(A) < \infty$, $A\in \mathcal{L} \iff A \in \mathcal{L}_0$. For those sets $\lambda$ definitions are equivalent.
+	\begin{proof}
+		If $A \in \mathcal{L}_0$ in, then $\forall M\in \mathcal{L}_0 \quad A\cap M \in \mathcal{L}_0$, thus $A\in \mathcal{L}$.
+		
+		Now, if $A\in \mathcal{L}$ and $\lambda^*(A) < \infty$. For all $N \in \mathbb{N}$,
+		$$A\cap B(0,N) \in \mathcal{L}_0$$
+		
+		However
+		$$A = \bigcup_{N=1}^\infty \qty[A\cap B(0,N)]$$
+		And $\lambda^*(A) < \infty$, thus  $A \in \mathcal{L}_0$.
+		
+		Denote
+		$$\tilde{\lambda}(A) = \sup \left\{ \lambda(A\cap M), M \in \mathcal{L}_0 \right\}$$
+		Obviously, $\tilde{\lambda}(A)\geq\lambda(A) $ (take $M=A$). On the other side,
+		$$\forall M\in \mathcal{L}_0 \quad \lambda(A\cap M) \leq \lambda(A)$$
+		thus $\tilde{\lambda}(A)=\lambda(A) $
+		
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+	$$\emptyset \in \mathcal{L}$$
+	\begin{proof}
+		$$\emptyset \in \mathcal{L}_0 \Rightarrow \emptyset \in \mathcal{L}$$
+	\end{proof}
+\end{prop}
+\begin{prop}
+$$A \in \mathcal{L} \Rightarrow \mathbb{R}^n \setminus A \in \mathcal{L} $$
+\begin{proof}
+	Take $M\in \mathcal{L}_0$. 
+	$$\qty(\mathbb{R}^n \cap A) \cap M = M \setminus A = M \setminus (A\cap M) \in \mathcal{L}_0$$
+\end{proof}
+\end{prop}
+\begin{prop}
+$$\left\{ A_i \right\}_{i=1}^\infty \in \mathcal{L} \Rightarrow A = \bigcup A_i \in \mathcal{L} $$
+\begin{proof}
+	Take $M\in \mathcal{L}_0$. 
+	$$A\cap M = \bigcup_{i=1}^\infty (A_k\cap M) $$
+	$$\lambda^*(A\cap M) \leq \lambda(M) $$
+	Thus
+	$$A\cap M \in \in \mathcal{L}_0$$
+\end{proof}
+\end{prop}
+
+\begin{prop}
+	If $\forall N\in \mathbb{N}$, $A\cap B(0,N) \in \mathcal{L}_0$, then $A\in \mathcal{L}$.
+\end{prop}
+
+\begin{definition}
+	For some set $X$, set $M$ of its subsets is called $\sigma$-algebra if
+	\begin{enumerate}
+		\item $\emptyset \in M$
+		\item $A\in M \Rightarrow X\setminus A\in M$
+		\item $\left\{ A_i \right\}_{i=1}^\infty \in M \Rightarrow A = \bigcup A_i \in M $
+	\end{enumerate}
+\end{definition}
+
+\paragraph{Examples}
+\begin{enumerate}
+	\item $2^X$ for any $X$ is $\sigma$-algebra
+	\item All subsets of $\mathbb{R}$ that are countable or their complement is countable.
+	\item All open sets in $\mathbb{R}$ is not $\sigma$-algebra.
+\end{enumerate}
+\begin{prop}
+	If $M$ is $\sigma$-algebra and  $\left\{ A_k \right\}_{k=1}^\infty \subset M$, then
+	$$\bigcap_{k=1}^\infty A_k \in M$$
+	\begin{proof}
+		$$X \setminus \bigcap_{k=1}^\infty A_k = \bigcup_{k=1}^\infty \qty(X\setminus A_k) \in M$$
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+	All open and closed sets are in $\mathcal{L}$
+	\begin{proof}
+		Let $A$ some open set. Then $A\cap B(0,N)\in \mathcal{L}_0$. Since $\mathcal{L}$ is closed for complementation, also closed sets are in $\mathcal{L}$.
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+	If $\left\{ A_k \right\}_{k=1}^\infty \subset \mathcal{L}$ then
+	$$\lambda\qty(\bigcup_{k=1}^\infty A_k) \leq \sum_{k=1}^\infty \lambda(A_k)$$
+	\begin{proof}
+		Denote $A=\bigcup_{k=1}^\infty A_k$. For $M\in \mathcal{L}_0$
+		$$\lambda(A\cap M) = \lambda\qty(\bigcup_{k=1}^\infty \qty(A_k \cap M)) \leq \sum_{k=1}^\infty \lambda(A_k\cap M) \leq \sum_{k=1}^\infty \lambda(A_k)$$
+		Since it right for any $M$, 
+		$$\lambda\qty(A) \leq \sum_{k=1}^\infty \lambda(A_k)$$
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+If $\left\{ A_k \right\}_{k=1}^\infty \subset \mathcal{L}$ and $A_i\cap A_j=0$ then
+$$\lambda\qty(\bigcup_{k=1}^\infty) = \sum_{k=1}^\infty \lambda(A_k)$$
+\begin{proof}
+	For some $N \in \mathbb{N}$, choose $\left\{ M_p \in \mathcal{L}_0 \right\}_{p=1}^N$. Define $\mathcal{L}_0 \ni M = \bigcup_{p=1}^N M_p$. 
+	$$\lambda(A) \geq \lambda(A\cap M) = \sum_{k=1}^\infty \lambda (A_k \cap M) \geq \sum_{k=1}^N \lambda (A_k \cap M) \geq \sum_{k=1}^N \lambda (A_k \cap M_k)  $$
+	Thus
+	$$\lambda_A \geq \sup \left\{ \sum_{k=1}^N \lambda (A_k \cap M_k), M_k \in \mathcal{L}_0 \right\} = \sum_{k=1}^N \sup \left\{  \lambda (A_k \cap M_k), M_k \in \mathcal{L}_0 \right\} = \sum_{k=1}^N \lambda(A_k) $$
+	Since it's right for any $N$,
+	$$\lambda_A \geq \sum_{k=1}^\infty \lambda(A_k) $$
+\end{proof}
+\end{prop}
+
+\begin{theorem}
+	The defined $\lambda$ fulfills properties of measure.
+	\begin{enumerate}
+	\item $0\leq \lambda(A) \leq \infty$
+\item $\lambda(\emptyset) = 0$
+\item $\lambda(\qty[a_1,b_1]\cross\qty[a_2,b_2]\cross\dots\cross \qty[a_n,b_n]) = \prod_{i=1}^n (b_i-a_i)$
+\item If $A = \bigcupdot_{k=1}^\infty A_k$, then $\lambda(A) = \sum_{i=1}^\infty \lambda(A_k)$.
+\item If $C$ is acquired from $A$ by rotation or translation $\lambda(C) = \lambda(A)$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Measure]
+	For some set $X$, measure of $X$ is function $\mu$ defined on $\sigma$-algebra $M$ of subsets of $X$ and fulfills
+	\begin{enumerate}
+		\item $0\leq \mu(A) \leq \infty$
+		\item $\mu(\emptyset) = 0$
+		\item If $A = \bigcupdot_{k=1}^\infty A_k$, then $\lambda(A) = \sum_{i=1}^\infty \lambda(A_k)$.
+	\end{enumerate}
+\end{definition}
+We denote measure space as $\qty(X,\mu, M)$.
+\begin{theorem}
+	Let  $\qty(X,\mu, M)$ measure space. 
+	\begin{enumerate}
+		\item If $\left\{ A_k \right\}_{k=1}^\infty \subset M$ and $\forall k \: A_k \subset A_{k+1}$, then
+		$$\mu\qty(\bigcup_{k=1}^\infty A_k) = \lim_{k\to \infty} \mu(A_k)$$
+		\item If $\left\{ A_k \right\}_{k=1}^\infty \subset M$ and $\forall k \: A_k \supset A_{k+1}$ and $\mu(A_1) < \infty$, then
+		$$\mu\qty(\bigcap_{k=1}^\infty A_k) = \lim_{k\to \infty} \mu(A_k)$$
+	\end{enumerate}
+
+\begin{proof}
+	$$\bigcup_{k=1}^\infty A_k = A_1 \cup \qty[\bigcup_{k=1}^\infty A_{k+1}\setminus A_k]$$
+	Since those sets are disjoint
+	$$\mu\qty(\bigcup_{k=1}^\infty A_k ) = \mu(A_1) + \sum_{k=1}^\infty \mu(A_{k+1} \setminus A_k)= \lim_{N\to \infty} \mu(A_1) + \sum_{k=1}^N \mu(A_{k+1} \setminus A_k) = \lim_{N\to \infty} \mu\qty(A_1 \cup \qty[\bigcup_{k=1}^N A_{k+1}\setminus A_k])  = \lim_{N\to \infty} \mu\qty(A_{N+1})$$
+\end{proof}
+\end{theorem}
+
+\begin{prop}[]
+	If $\lambda^*(A)=0 $, $A\in \mathcal{L}$ and for any $B\subset A$, $B\in \mathcal{L}$ and $\lambda(B)=0$.
+	\begin{proof}
+		$$\lambda_*(A) \leq \lambda^*(A) = 0 \Rightarrow A\in \mathcal{L}_0$$
+		Monotonity of upper measure
+	\end{proof}
+\end{prop}
+\begin{theorem}
+	$A$ is measurable iff $\forall \epsilon>0$ exist open $G$ and closed $F$ such that $$F\subseteq A\subseteq G$$ and $$\lambda(G\setminus F) \leq \epsilon$$
+	\begin{proof}
+		$\Leftarrow$:
+		
+		Suppose exist such $G$ and $K$. For all $k$ choose 
+		$G_k$ and $F_k$ such that
+		$$\lambda(G_k\setminus F_k) < \frac{1}{k}$$
+		Denote 
+		$$B = \bigcup_{k=1}^\infty F_k$$
+		$$\lambda^* (A\setminus B) = 0$$
+		and
+		$$A\setminus B \subseteq G_k \setminus B \subseteq G_k \setminus F_k$$
+		Thus
+		$$\lambda^*(A\setminus B) \leq \lambda(G_k \setminus F_k) <\frac{1}{k}$$
+		Thus $\lambda^*(A\setminus B) = 0$ and $A\setminus B \in \mathcal{L}$.
+		
+		However $B \in \mathcal{L}$ and $A = B\cup (A\setminus B)$, thus $A\in \mathcal{L}$.
+		
+		
+		$\Rightarrow$:
+		
+		Suppose $A\in \mathcal{L}$. Denote $E_k = B(0,k) \setminus B(0,k-1)$. This is partition of $\mathbb{R}^n$. $E_k \in \mathcal{L}_0$ and so is $A\cap E_k \in \mathcal{L}$. 	
+		Thus for all $k$ there is
+		$$K_k \subseteq A\cap E_k \subseteq G_k$$
+		such that $\lambda(G_k\setminus K_k) < \frac{\epsilon}{2^k}$.
+		Denote 
+		$$F = \bigcup_{k=1}^\infty K_k$$
+		$$G = \bigcup_{k=1}^\infty G_k$$
+		
+		$$\lambda(G\setminus F)= \lambda\qty(\bigcup_{k=1}^\infty (G_k\setminus F)) \leq \lambda\qty(\bigcup_{k=1}^\infty (G_k\setminus K_k)) \leq \sum_{k=1}^\infty\lambda\qty( G_k\setminus K_k) < \epsilon$$
+		
+		Now, $F$ is closed. Let $F \ni x_k \to x$. The sequence converges and thus bounded, and thus exists $N$ such that $\left\{ x_k \right\} \cup \left\{ x \right\} \in B(0,N)$.
+		
+		Thus $\left\{ x_k \right\} \subseteq \qty(\bigcup_{i=1}^N E_i) \cap F$ and $\left\{ x_k \right\} \subseteq \bigcup_{i=1}^N K_i$ and thus  $\left\{ x_k \right\} \cup \left\{ x \right\} \in F$.
+		
+		
+		
+	\end{proof}
+\end{theorem}

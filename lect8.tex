@@ -1,0 +1,73 @@
+Denote $\mathcal{C}$ set of intervals in $[0,1]\setminus C$. Any interval $J\in \mathcal{C}$ exists $r$ such that
+$$g(x) = x+r$$
+($f$ is constant on $J$). That means $\lambda(g(J))=\lambda(J)$.
+
+We see that
+$$\lambda(G) - \lambda\qty([0,2] \setminus \bigcup_{J\in \mathcal{C}} g(J)) = 2 - \sum_{J\in \mathcal{C}} \lambda(g(J)) = 2- \sum_{J\in \mathcal{C}} \lambda(J) = 2-1=1$$
+
+Let $B\subseteq g(C)$ which is not measurable. Denote
+$$A = g^{-1}(B)$$
+It is obvious that $A\subseteq C$, and since $\lambda(C)=0$, $\lambda(A)=0$.
+
+If $A$ was Borel, then, since
+$B=g(A)$ and $g$ is homeomorphism, we get that $B$ is Borel. However, this is impossible, since $B$ is non-measurable.
+\section{Measurable functions and integrals}
+We want to define integral as the sum of possible values of function times the size of set for which function gets this values:
+$$\int f \sim \sum f(t_i \in A_i) \times \lambda(A_i)$$
+where
+$$A_i = \left\{ x: f(x) \in [a,a+\epsilon] \right\}$$
+
+Let $X$ space with $\sigma$-algebra $M$. We work with functions
+$$f: X \to [-\infty, \infty]$$
+
+\begin{definition}
+	We say $f$ is $M$-measurable if for all $-\infty\leq t\leq \infty$ 
+	$$f^{-1} \qty(-\infty,t) \in M$$
+\end{definition}
+
+\begin{prop}
+	The following conditions are equivalent:
+	\begin{enumerate}
+		\item $f$ is $M$-measurable: $$\forall  \: -\infty < t \leq \infty \quad f^{-1}([-\infty, t]) \in M$$
+		\item $$\forall  \: -\infty < t \leq \infty \quad f^{-1}([-\infty, t)) \in M$$
+		\item $$\forall  \: -\infty \leq t \leq \infty \quad f^{-1}([t, \infty]) \in M$$
+		\item $$\forall  \: -\infty \leq t < \infty \quad f^{-1}((t, \infty]) \in M$$
+		\item $f^{-1}(\infty) \in M$, $f^{-1}(-\infty) \in M$, and $\forall E\in \mathcal{B}(\mathbb{R})$ $f^{-1}(E) \in M$
+		\item $f^{-1}(\infty) \in M$, $f^{-1}(-\infty) \in M$, and $\forall a,b \in \mathbb{R}$ $f^{-1}([a,b]) \in M$
+	\end{enumerate}
+
+\begin{proof}
+	$1\Rightarrow 2$:
+	
+	$$f^{-1}([-\infty, t)) = \bigcup_{\mathbb{Q} \ni r <t} f^{-1} ([-\infty, r])$$
+	thus $f^{-1}([-\infty, t)) \in M$.
+	
+	$2\Rightarrow 3$:
+	
+	If $t=-\infty$, $f^{-1}([-\infty, \infty]) = X \in M$. Otherwise
+	$$f^{-1}([t, \infty]) = X \setminus \left(f^{-1}([-\infty, t))\right) $$
+	thus $f^{-1}([t, \infty]) \in M$.
+	
+	$3\Rightarrow 4$: just like $1\Rightarrow 2$
+	
+	
+	$4\Rightarrow 1$: just like $2\Rightarrow 3$
+	
+	$1-4 \Rightarrow 5$:
+	
+	Taking $t=\pm \infty$, we get $f^{-1}(\infty)$ and $f^{-1}(-\infty)$. 
+	
+	Let 
+	$$S = \left\{ E\subset \mathbb{R} | f^{-1}(E)\in M \right\}$$
+	$S$ is $\sigma$-algebra.
+	
+	$$f^{-1} \qty\bigg((a,b)) = f^{-1}((a,\infty]) \cap f^{-1} ([-\infty, b)) \in M$$
+	Thus open intervals are in $\mathbb{R}$, and thus open sets and thus $\mathcal{B}\subset S$.
+	
+	
+	$5 \Rightarrow 6$: Obvious, since $5$ is stronger
+	
+	
+	$6 \Rightarrow 1$: Lest as an exercise
+\end{proof}
+\end{prop}

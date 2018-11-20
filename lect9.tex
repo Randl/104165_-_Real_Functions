@@ -1,0 +1,145 @@
+\begin{coll}
+	If $f: E\to [-\infty, \infty]$ and $E\in M$, then the definition is conserved.
+\end{coll}
+\begin{coll}
+	$\chi_A(x) = \begin{cases}
+	1&x\in A\\0&x\notin A
+	\end{cases}$ is measurable iff $A \in M$.
+\begin{proof}
+		
+	$A=\chi_A^{-1}(\left\{ 1 \right\})$, thus one direction is obvious.
+	
+	Else,
+	$$\chi_A^{-1}(A) = \begin{cases}
+	X&0,1\in E\\
+	A& 1\in E, 0\notin E\\
+	X\setminus A & 1\notin E, 0 \in E\\
+	\emptyset & 0,1\notin E
+	\end{cases}$$
+\end{proof}
+\end{coll}
+
+\begin{coll}
+	$f: E\to \mathbb{R}$, for Borel set $E\subset \mathbb{R}$. If $f$ is continuous then $f$ Borel-measurable and Lebesgue-measurable.
+\end{coll}
+
+\begin{theorem}
+	Let $f: X \to \mathbb{R}$ M-measurable functions. 
+	
+		If $\phi: B\to \mathbb{R}$ for Borel set $B\subseteq \mathbb{R}$ and $f(x) \subseteq B$ and $\phi$ Borel-measurable, then $\phi \circ f$ are M-measurable.
+		
+		\begin{proof}
+			We need to show
+			$$f^{-1}(\phi^{-1}(E)) = (\phi\circ f)^{-1}(E) \in M$$
+			Now, $\phi^{1}(E) \in \mathcal{B}$, since $\phi$ is Borel-measurable. Then $f^{-1}(\phi^{-1}(E)) \in M$.
+		\end{proof}
+		\begin{coll}
+			If $f$ is non-zero, $\frac{1}{f}$ is measurable.
+		\end{coll}
+	\begin{coll}
+	If $0<p<\infty$, $\abs{f}^p$ is measurable.
+\end{coll}
+\end{theorem}
+
+\begin{prop}
+	If $f$ is weaker (for example, Lebesgue-measurable), the theorem is not true, even if $\phi$ is homeomorphism. For example, we've seen $g$ and non measurable $g(A)$ for measurable $A$. Then
+	$$\chi_A \circ \phi = \chi_{g(A)}$$
+	which is non-measurable.
+\end{prop}
+
+\begin{theorem}
+	Let $f,g : X \to \mathbb{R}$ $M$-measurable functions. Then
+	$f+g$, $cf$, $f\cdot g$ are $M$-measurable.
+	\begin{proof}
+		$$(f+g)^{-1}(-\infty,t) \bigcup_{r\in \mathbb{Q}} \qty[f^{-1}(-\infty, r) \cap g^{-1} (-\infty, t-r)]$$
+		
+		That means measurable functions are vector space.
+		
+		$$f\cdot g = \frac{1}{4} (f+g)^2 - \frac{1}{4} (f-g)^2$$
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	Let $\left\{ f_k\right\}_{k=1}^\infty: X \to [-\infty, \infty]$ sequence of $M$-measurable functions. Then also 
+	$\liminf f_k$, $\limsup f_k$, $\sup f_k$, $\inf f_k$ and so is $\lim f_k$ if exists.
+	\begin{proof}
+		$$\qty(\sup f_k)^{-1} ([-\infty, t]) = \left\{ x: \sup f_k(x) \leq t \right\} = \bigcap \left\{ x: f_k(x) \leq t \right\} = \bigcap f^{-1}_k ([-\infty, t]) \in M$$
+		$$\limsup f_k(x) = \inf\limits_n \qty(\sup\limits_n{j\leq n} f_j(x)) $$
+	\end{proof}
+\end{theorem}
+
+\begin{definition}[Simple function]
+	$f: X \to [-\infty, \infty]$ is called simple function if it acquires only finite number of values.
+	
+	If we denote those values as $\left\{ a_i \right\}_{i=1}^n$ and $A_k = \left\{ x: f(x) = a_k \right\}$. Then we can rewrite function as
+	$$f(x) = \sum_{k=1}^na_k \chi_{A_k}(x)$$
+	
+	In fact, all  functions that can be written as
+	$$f(x) = \sum_{k=1}^m b_K \chi_{B_k}(x)$$
+	is simple. If $\left\{ B_k\right\}$ ar disjoint and $b_k$ are not equal, this is called canonical representation.
+\end{definition}
+
+\begin{prop}
+	$f$ is measurable iff $\forall k \: A_k \in M$
+	\begin{proof}
+		$\chi_A$ measurable $\Rightarrow$ $f$ is measurable.
+		
+		$A_k = \left\{ x: f(x) = a_k \right\}$ is measurable.
+	\end{proof}
+\end{prop}
+
+\begin{theorem}
+	$f: X\to [-\infty, \infty]$. $f$ $m$-measurable if there is sequence $\left\{s_k \right\}$ of measurable simple functions such that $\forall x \: s_k(x) \to f(x)$. We can choose $s_k$ such that $\abs{s_{k-1}} \leq \abs{s_k}$.
+	
+	\begin{proof}
+		$\Leftarrow$ obvious.
+		
+		$\Rightarrow$:
+		
+		Suppose $f\geq 0$. Define
+		$$s_k(x) = \begin{cases}
+		k & f(x)\geq k\\
+		\frac{i-1}{2^k} & \frac{i-1}{2^k} \leq f(x) < \frac{i}{2^k}
+		\end{cases}$$
+		
+		We can rewrite as
+		$$s_k(x) = k\chi_{A_kf^{-1}(k,\infty)} + \sum_{i=1}^{k\cdot 2^k} \frac{i-1}{2^k} \chi_{f^{-1}\qty[\frac{i-1}{2^k},\frac{i}{2^k}]}$$
+		which is canonical form, and we conclude $s_k$ are measurable.
+		
+		Obviously, $s_k\leq s_{k+1}$.
+		
+		If $f(x) = \infty$, $s_k=k \to \infty=f(x) $.
+		
+		Else, $\exists k_0> f(x)$, and then
+		$$s_k(x) \leq f(x) \leq s_k(x) + \frac{1}{2^k}$$
+		i.e., $s_k(x) \to f(x)$.
+		
+		
+		In general case we define $f_+ = \max \left\{f(x),0 \right\}$ and $f_- = \max \left\{-f(x),0 \right\}$. Note that $f=f_+-f_-$ and $f_-\cdot f_+ = 0$. Both $f_-, f_+$ are measurable. For $f_\pm$ exist sequences $\left\{ s'_k \right\}$, $\left\{ s''_k \right\}$, we can define $s_k=s'_k-s''_k$. 
+		
+		For any $x$ either $s'_k(x)$ or $s''_k(x)$ is $0$, thus in any point $s_k=s'_k$ or $s_k=-s''_k$, i.e., $\abs{s_{k-1}} \leq \abs{s_k}$. 
+	\end{proof}
+\end{theorem}
+
+\begin{definition}
+	If some property is fulfilled for all $x$ except, maybe, some set $A$ which is subset of set of measure $0$, we say that property is fulfilled almost everywhere (a.e.). In probability we say the property fulfilled almost surely (a.s.). 
+\end{definition}
+\begin{theorem}
+	Let $f: \mathbb{R}^n \to [-\infty, \infty]$ be Lebesgue-measurable function. Then  $\exists g(x)$, Borel-measurable function, such that $\lambda\qty(\left\{ x: f(x) \neq g(x) \right\}) = 0$, i.e. $f(x)=g(x)$ a.e.
+	
+	\begin{proof}
+		Suppose $f\geq 0$. Let $\left\{ s_k\right\}$ as in previous theorem and thus $f=\sup s_k$. 
+		$$s_k = \sum_{j=1}^m a_j \chi_{A_j}$$
+		Since $A_j \in \mathcal{L}$ we can rewrite it as $A_j = E_j \cup N_j$.
+		
+		Define $$h_k = \sum_{j=1}^m a_j \chi_{E_j} \leq s_k$$
+		
+		Since $h_k = s_k$ except for $\bigcup N_j$, which is of measure $0$, $h_k = s_k$ a.e.
+		
+		Denote $N = \bigcup_{k=1}^\infty \bigcup_{j=1}^{m_k} N_j$, obviously $\lambda(N) = 0$. Also define $g=\sup\limits_k h_k$.
+		
+		$g(x)=f(x)$ if $x\notin N$, i.e., a.e. and $g(x)$ is Borel-measurable as supremum of Borel-measurable functions.
+		
+		For general $f$, we do same with $f_\pm$ and acquire $g_\pm$.
+	\end{proof}
+\end{theorem}

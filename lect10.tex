@@ -1,0 +1,49 @@
+\begin{lemma}
+	If $f$ is Lebesgue measurable, then if $g: \mathbb{R}^n \to [-\infty,\infty]$ fulfilling
+	$$\lambda^*\left\{ x : f(x) \neq g(x) \right\} = 0$$ 
+	then $g$ is measurable.
+	\begin{proof}
+		Let $-\infty \leq t \leq \infty$, we need to show that $B=g^{-1}\qty(\qty[-\infty, t])$ is Lebesgue-measurable.
+		
+		We now that $A=f^{-1}[-\infty, t]$ is Lebesgue-measurable.
+		$$B \setminus A \subseteq \left\{x: f(x) \neq g(x)  \right\}$$
+		Thus $B\setminus A $ is measurable with measure $0$.
+		$$B = (A\cup B) \setminus (A\setminus B) \in \mathcal{L}$$
+	\end{proof}
+\end{lemma}
+\begin{theorem}[Tietze extension theorem] \label{tietze}
+	Let $Y \subseteq \mathbb{R}^n$ and $f: Y\to \mathbb{R}$ continuous and bounded ($\abs{f}\leq M$). Exists continuous function $F: \mathbb{R}^n\to \mathbb{R}$ such that $F=f$ on $Y$ and $\abs{F}\leq M$.
+\end{theorem}
+\begin{theorem}[Lusin's theorem]
+	Let $f: \mathbb{R}^n \to \mathbb{R}$ which vanishes outside of measurable set $A$. The for all $\epsilon >0$ exists closed set $E\subseteq A$ and continuous function $g: \mathbb{R}^n \to \mathbb{R}$ such that $f=g$ on $E$ and $\lambda(A\setminus E) < \epsilon$.
+	\begin{proof}
+		Let $f$ be a simple function in canonical form:
+		$$f(x) = \sum_{j=1}^m a_j \chi_{A_j}(x)$$
+		and $A = \bigcup_{j=1}^m A_i$. $A_i$ are measurable, thus exists closed set $F_i \subseteq A_i \subseteq A$ such that $\lambda(A_i\setminus F_i) < \frac{\epsilon}{m}$.
+		
+		Denote $E= \bigcup_{i=1}^m F_i$. 
+		$$\lambda(A\setminus E) =\sum_i \lambda(A_i\setminus F_i)  < \leq \epsilon$$
+		Define $f_0$ on $E$ such that $\eval{f_0}_{F_i}=a_i$. $f$ is continuous and thus by \ref{tietze} exists $g$ as required.
+		
+		
+		Now, let $f$ be measurable and bounded. Let $\epsilon>0$. We know there exists $\left\{ s_k\right\}_{k=1}^\infty$ such that $s_k \to f$ uniformly. 
+		
+		For all $k$ exists continuous $g_k$ and $L_k$ such that $\lambda(A\setminus L_k) <\frac{\epsilon}{2^k}$ and $g_k=s_k$ on $L_k$. Denote $E = \bigcap L_k$.
+		$$\lambda(E\setminus E) = \lambda\qty(A\setminus \bigcap L_k) = \lambda\qty(\bigcup \qty(A\setminus  L_k)) \leq \sum \lambda(A\setminus L_k) < \epsilon$$
+		
+		On $E$, $g_k$ converges uniformly to $f$, thus $f$ is continuous of $E$ and from \ref{tietze} we get what we wanted.
+		
+		Let $f$ measurable function which vanishes outside of measurable set $A$ such that $\lambda(A) < \infty$.
+		$$\bigcap_N \underbrace{\left\{  x\in A : \abs{f(x)} \geq N \right\}}_{A_N} = \emptyset$$
+		$A_N\subset A_{N+1}$, measurable and $\lambda(A) < \infty$, then $0=\lambda(\bigcap_N A_N) = \lim_{N\to \infty} \lambda(A_N)$.
+		
+		Thus exists $N_0$ such that $\lambda(A_{N_0}) <\frac{\epsilon}{2}$. Denote
+		$$G = \left\{ x\in A : \abs{f(x)} < N_0 \right\}$$
+		$$A_{N_0} = \left\{ x\in A : \abs{f(x)} \geq N_0 \right\}$$
+		Then $\lambda(A\setminus G) =\lambda( A_{N_0} ) < \frac{\epsilon}{2}$.
+		
+		Then $\chi_G f: G\to \mathbb{R}$ is bounded and measurable, i.e., exists closed $E\subseteq G$ such that $\chi_G f$ is continuous on $E$ and $\lambda(G\setminus E) <\frac{\epsilon}{2}$. Since $\lambda(A\setminus E) < \epsilon$, once again we use \ref{tietze} and get what we wanted. 
+		
+		Denote $A_k = A\cap (B(0,k) \setminus B(0,k-1)$. Define $f_k =\eval{f}_{A_k}$ then exists closed $E_k\subseteq A_k$ such that $\eval{f_k}_{E_k}$ such that $\lambda(A_k\setminus E_k)  < \frac{\epsilon}{2^k}$. $E=\bigcup E_k$ is closed and $\eval{f}_E$ is continuous and $\lambda(A\setminus E) < \epsilon$.
+		\end{proof}
+\end{theorem}

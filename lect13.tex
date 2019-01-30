@@ -1,0 +1,79 @@
+\subsection{Riemann integral}
+Reminder: Riemann integral in rectangle is limit of Darboux sums: for $I_j$ subrectangle
+$$U(P) = \sum M_j  \lambda(I_j)$$
+$$D(P) = \sum m_j  \lambda(I_j)$$
+where $m_j$ and $M_j$ are supremum and infimum on subrectangle.
+$f$ is integrable if sums converge to same number.
+
+Define
+$$\tau_P(x) = \begin{cases}
+M_j & x\in \inter I_j\\
+M & \text{ otherwise}
+\end{cases}$$
+$$\sigma_P(x) = \begin{cases}
+m_j & x\in \inter I_j\\
+m & \text{ otherwise}
+\end{cases}$$
+$\sigma$, $\tau$ are simple, Lebesgue integrable, in particular measurable, and Riemann integrable and continuous a.e.
+
+$$\int \sigma_p \dd{\lambda} = L(P) = \int \sigma_p \dd{x}$$
+$$\int \tau_p \dd{\lambda} = U(P) = \int \sigma_p \dd{x}$$
+and $\sigma_p \leq f \leq \tau_p$.
+\begin{theorem}
+	Let $f$ bounded $(\abs{f} \leq M$) on special box $I$ then 
+	\begin{enumerate}
+		\item $f$ is Riemann integrable iff $f$ continuous a.e.
+		\item If $f$ is Riemann integrable it is measurable and 
+		$$\int f \dd{\lambda} =  \int f\dd{x}$$
+	\end{enumerate}
+\begin{proof}
+	Suppose $f$ is Riemann integrable, for each $k$ exists partition $P_k$ such that $U(P_k)-L(P_k)< \frac{1}{k}$ and $P_{k-1} \subset P_{k}$. Denote $\sigma_k$, $\tau_k$. $\int \tau_k \dd{\lambda} = U(P_k)$ and $\tau_k\geq f$.
+	
+	In every point of continuity of $\sigma_p$, $\sigma_k \leq f$ thus
+	$$\sigma_k \leq \underline{\sigma}_k \leq \underline{f} $$
+	Thus
+	$$\sigma_k \leq \underline{f} \leq \bar{f} \leq \tau_k$$
+	a.e. Obviously $\sigma_{k+1} \geq \sigma_k$ and $\tau_{k+1} \leq \tau_k$.
+	
+	Define $g =\sup \sigma_k$ and $h=\inf \tau_k$.  By definition
+	$$g \leq \underline{f} \leq \bar{f} \leq h$$
+	a.e., and $h-g \leq \tau_k -\sigma_k$.
+	$$\int (h-g) \dd{\lambda} \leq \in t\tau_k - \sigma_k \dd{\lambda} = U(P_k) - L(P_k) < \frac{1}{k}$$
+	$$\int (h-g) \dd{\lambda} = 0$$
+	Thus $h=g$ a.e., and $\underline{f} = \bar{f}$ a.e., thus $f$ continuous a.e.
+	
+	
+	$$\int\limits_I f\dd{x} \leq U(P_k) < L(P_k) + \frac{1}{k} = \int \sigma_k \dd{\lambda} +\frac{1}{k} \leq \int f \dd{\lambda} +\frac{1}{k}$$
+	$$\int\limits_I f\dd{x} \geq L(P_k) > U(P_k) -+ \frac{1}{k} = \int \tau_k \dd{\lambda} - \frac{1}{k} \geq \int f \dd{\lambda} -\frac{1}{k}$$
+	Thus
+	$$\int f \dd{\lambda} -\frac{1}{k} \leq \int f \dd{x} \leq\int f \dd{\lambda} +\frac{1}{k}$$
+	i.e., $\int f \dd{\lambda} = \int f \dd{x} $ю
+	
+	
+	Suppose $f$ continuous a.e. denote by $P_k$ partition of each rectangle side to $2^k$ equal parts. We know that
+	$$\sigma_1 \leq \sigma_2 \leq \dots \leq f$$
+	For $x$ which is not on the boundary,
+	$$\underline{f}(x) \leq \lim_{k\to \infty} \sigma_k(x)$$
+	else there is $t$ such that
+	$$\lim_{k\to \infty} \sigma_k(x)<t<\underline{f}(x)$$
+	Thus exists $\delta>0$ such that $\inf\left\{  f(y) : y\in B(x,\delta)   \right\} > t$ and
+	$$\lim_{k\to \infty} \sigma_k(x) <t< f(y)$$
+	However we can increase $k$ such that the partition will include the whole $\delta$-neighborhood, and thus there is contradiction with the definition of the $\sigma$. Thus 
+	
+	$$\underline{f}(x) \leq \lim_{k\to \infty} \sigma_k(x)$$
+	and similarly 
+	$$\bar{f}(x) \geq \lim_{k\to \infty} \tau_k(x)$$
+	a.e.
+	
+	Since $f$ is continuous a.e., $f=\underline{f}=\bar{f}$ a.e. Thus
+	$$ \lim_{k\to \infty} \sigma_k(x) \geq f \geq \lim_{k\to \infty} \tau_k(x)$$
+	a.e. However $\sigma_k \leq \tau_k$, i.e.
+	$$ \lim_{k\to \infty} \sigma_k(x) = f = \lim_{k\to \infty} \tau_k(x)$$
+	a.e.
+	$$ f = \lim_{k\to \infty} \int \sigma_k(x) \dd{\lambda} = \lim_{k\to \infty} \int  \tau_k(x) \dd{\lambda}$$
+	where we switch limit and integral by DCT with $M\chi$.
+	We got that
+	$$\lim U(P_k) = \lim L(P_k) $$
+	and thus $f$ is Riemann integrable.
+\end{proof}
+\end{theorem}

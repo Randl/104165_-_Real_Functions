@@ -1,0 +1,65 @@
+	\begin{theorem}
+		Let $T$ linear transformation and $f$ function defined on $\mathbb{R}^n$ then
+		\begin{enumerate}
+			\item If $f$ measurable then so is $f\circ T$
+			\item If $f$ is measurable and $f\geq 0$ then $\int f \dd{\lambda} = \abs{\det(T)} \int f(Tx)\dd{\lambda}$.
+			\item If $f\in \mathcal{L}^1$ then $f\circ T \in L^1$.
+		\end{enumerate}
+	\end{theorem}
+	
+	\section{$L^1(\mathbb{R}^n )$ space}
+	\begin{definition}
+		Vector space $X$ over $\mathbb{R}$ is called norm space if exists function $\norm{\cdot} : X\to \mathbb{R}$ such that
+		\begin{enumerate}
+			\item $\norm{x} \geq 0$
+			\item $\norm{x} = 0 \iff x=0$
+			\item For $c\in \mathbb{R}$ $\norm{cx} = \abs{c} \norm{x}$
+			\item $\norm{x+y} \leq \norm{x} + \norm{y}$
+		\end{enumerate}
+	\end{definition}
+	Norm space is metric space with metric $d(x,y) = \norm{x-y}$.
+	
+	\begin{definition}[Convergence]
+		$x_n\to x$ if $d(x_n, x) \to 0 \iff \norm{x_n-x}\to 0$.
+		
+		If $x_n\to x$ then $\norm{x_n} \to \norm{x}$.
+	\end{definition}
+	\begin{definition}[Open and closed balls]
+		Open ball: $B(x,r) = \left\{ y\in X | \norm{y-x} < r \right\}$
+		Closed ball: $B(x,r) = \left\{ y\in X | \norm{y-x} \leq r \right\}$
+	\end{definition}
+	\begin{definition}[Open set]
+		$A\subset X$ is open if $\forall a\in A \exists r>0$ such that $B(a,r) \subseteq A$.
+	\end{definition}
+	\begin{definition}[Closed set]
+		$A\subset X$ is open if $A \ni x_n \to x \Rightarrow x\in A$.
+	\end{definition}
+	\begin{definition}[Closure]
+		$\bar{A} $, the closure of $A$:
+		$$\bar{A} = \left\{ x: \exists x_n \in A , x_n \to x \right\}$$
+	\end{definition}
+	\begin{definition}[Dense set]
+		$A$ is dense if $\bar{A} = X$.
+	\end{definition}
+	
+	For $f\in \mathcal{L}^1(\mathbb{R}^n)$ denote
+	$$\norm{f}_1 = \int \abs{f} \dd{\lambda}$$
+	
+	Note that this is almost norm, except that there exists non-zero functions with norm $0$. To fix it, we define
+	$$N = \left\{ f\in \mathcal{L}^1 : f=0 \text{ a.e.} \right\}$$
+	and
+	$$L_1(\mathbb{R}^n) = \mathcal{L}^1(\mathbb{R}^n)/N$$
+	i.e., we define equivalence relation, $f\sim g$ if $f=g$ a.e.
+	
+	Usually we'll look at members of $L_1$ as functions and not as equvivalence classes. However, it's impossible to talk about value or limit of function in point in this case. Now we can define
+	$$\norm{f}_1 = \int \abs{f} \dd{\lambda}$$
+	norm on $L_1(\mathbb{R}^n)$.
+	
+	\begin{definition}
+		$C_c(\mathbb{R}^n)$ are continuous functions with compact support, i.e., $f=0$ outside of some ball.
+	\end{definition}
+	
+	
+	\begin{definition}
+		$[f]\in L_1(\mathbb{R}^n)$ is continuous if there is continuous $f\in [f]$.
+	\end{definition}

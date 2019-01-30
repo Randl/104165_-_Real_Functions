@@ -1,0 +1,59 @@
+Note that since there is unique completion of metric space we could define $L^1$ differently. Start with $X=C_c(\mathbb{R}^n)$ with Riemann integral as a  metric. Its completion is $L^1$ and we can define integral as a limit of Riemann integrals.
+
+\subsection{Parameter-dependent integrals}
+Let $J\subseteq \mathbb{R}$ and $f: \mathbb{R}^n\times \mathbb{R} \to [-\infty,\infty]$ and
+$$f_t: x \mapsto f(x,t) \in \mathbb{L}^1(\mathbb{R}^n)$$
+Denote
+$$F(t) = \int f_t(x) \dd{x}$$
+
+\begin{theorem}
+	Let $f$, $F$. Suppose $h\in L^1(\mathbb{R}^n)$ such that
+	$$\forall x,t \quad \abs{f(x,t)} \leq g(x)$$
+	Let $t_0\in J$. Suppose for almost every $x$ $t\mapsto f(x,t)$ if continuous in $t_0$. Then $F$ is continuous in $t_0$.
+	
+	\begin{proof}
+		We want to show that
+		$$\lim F(t_n) = F(t_0)$$
+		for $t_n\to t_0$.
+		
+		$$F(t_n) = \int f_{t_n} \dd{\lambda}$$
+		$$F(t_0) = \int f_{t_0} \dd{\lambda}$$
+		also, $f_{t_n} \to f_{t_0}$ a.e., from DCT we get the required.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	Let $J$ open and assume that for almost all $x$ ($x\notin N$) $t\mapsto f_t(x)$  differentiable for all $t\in J$. Also assume that exists $h\in L^1$ such that for all $x$ and $t$ 
+	$$\pdv{f}{t} \qty(x,t) \leq (x)$$
+	Then $F$ is differentiable in $J$ and
+	$$\dv{F}{t} \qty(t) = \int \pdv{f}{t} \qty(x,t)  \dd{\lambda(x)}$$
+	\begin{proof}
+		For all $t\in J$ $\pdv{f}{t} \qty(x,t) $ is measurable as a limit of measurable functions. Choose $t\in J$ and $\delta>0$ such that $t+s \in J$ for all $\abs{s}<\delta$. Define
+		$$g(x,s) =\begin{cases}
+		\pdv{f}{t} \qty(x,t) & x\notin N, s=0\\
+		\frac{f(x,t+s)-f(x,t)}{s}& x\notin N, s\neq0\\
+		0& x\in N
+		\end{cases}$$
+		Now
+		$$\int g(x,0) \dd{\lambda(x)}= \int \pdv{f}{t} \qty(x,t) \dd{\lambda(x)}$$
+		$$\int g(x,s) \dd{\lambda(x)}= \frac{F(t+s)+F(t)}{s}$$
+		Thus we need
+		$$\lim_{s\to 0} \int g(x,s) \dd{\lambda(x)} = \int g(x,0) \dd{\lambda(x)}$$
+		Note that $s\mapsto g(x,s)$ is continuous in $s=0$ and $x\mapsto g(x,s)$ is integrable for all $s$. Also $\abs{g(x,s)} \leq h(x)$ (for $s>0$ from Lagrange) and thus from previous theorem we get the required.
+	\end{proof}
+\end{theorem}
+
+\paragraph{Functions in $C^\infty_c$}
+$$h(t) = \begin{cases}
+0&t\leq 0\\
+e^{-\frac{1}{t}}& t>0
+\end{cases}$$
+
+$h$ is differentiable infinite times
+$$h^{(n)} = P_{2n} \qty(\frac{1}{t}) e^{-\frac{1}{t}}$$
+	
+Define
+$$\tilde{\phi} (x) = h(1-x_1^2-x_2^2-\dots x_n^2) \in C^\infty(\mathbb{R}^n)$$
+Note that $\tilde{\phi}(x) = 0$ if $\norm{x} \geq 1$, thus $\tilde{\phi}(x) \in C_c^\infty(\mathbb{R}^n)$ denote $C = \int \tilde{\phi} \dd{\lambda}$ and define
+$$\phi(x) = \frac{1}{C} \tilde{\phi}(x)$$
+We get $\phi(x) \in C_c^\infty(\mathbb{R}^n)$, $\phi\geq 0$, $\int \phi \dd{\lambda} = 1$ and $\phi(x)>0$ iff $\norm{x} <1$.

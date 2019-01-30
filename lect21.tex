@@ -1,0 +1,72 @@
+\begin{definition}
+	$f$ is uniformly continuous on $[a,b]$ if for all $\epsilon>0$ exists $\delta>0$ such that 
+	$$\abs{x-y}<\delta \Rightarrow \abs{f(x)-f(y)} <\epsilon$$
+\end{definition}
+\begin{definition}
+	$f$ is absolutely continuous on $[a,b]$ ($f\in AC[a,b]$) if for $\left\{ (x_i,y_i) \right\}_{i=1}^m$ are disjoint open intervals in $[a,b]$ such that $\sum (y_i-x_i) <\delta$ then
+	$$\abs{f(x)_i-f(y)_i} <\epsilon$$
+
+\end{definition}
+\begin{prop}
+	$AC$ is subspace.
+\end{prop}
+\begin{prop}
+$f\in AC[a,b] \Rightarrow f \in BV[a,b]$
+\begin{proof}
+	
+\end{proof}
+\end{prop}
+\begin{prop}
+$f\in AC[a,b]$ and $f'=0$ a.e., then $f$ is constant.
+\begin{proof}
+	Choose $a<c\leq b$ and show that $f(c)=f(a)$. Denote $E = \left\{ x \in (a,c) : f'(x) \right\}$ and $\lambda\qty((a,c) \setminus E) = 0$. Let $s>0$. For all $x\in E$
+	$$\lim_{h\to 0} \frac{\abs{f(x+h)-f(x)}}{\abs{h}} = 0$$
+	Thus for $h>0$ small enough
+	$$\abs{f(x+h)-f(x)} < \frac{sh}{n-a}$$
+	$$[x,x+h] \subseteq (a,c)$$
+	Denote
+	$$M = \left\{ [x,x+h]: x\in E, h>0 \right\}$$
+	Thus is Vitaly cover (it obviously covers $[a,c]$ an the size of interval depends on $h$). 
+	
+	Let $\epsilon>0$ and corresponding $\delta>0$ by absolute continuity. By Vitaly theorem exists finite set of disjoint intervals $\left\{  [x_k,x_k+h_k]\right\}\subseteq M$ such that
+	$$\lambda\qty(E\setminus \bigcup  [x_k,x_k+h_k]) <\delta$$
+	and then
+	$$\lambda\qty((a,c)\setminus \bigcup  [x_k,x_k+h_k]) <\delta$$
+	Then 
+	$$\sum x_{i+1} - y_i <\delta$$
+	and thus
+	$$\sum \abs{f(x_{i+1})-f(y_i)} <\epsilon$$
+	$$\sum \abs{f(y_{i})-f(y_i)} <\sum \frac{s}{b-a} (y_k-x_k) \leq s$$
+	$$\abs{f(c) - f(a) } = \abs{\sum f(x_{k+1}) - f(y_k) + \sum f(y_k) -f(x_k)} \leq \sum \abs{f(x_{k+1}) - f(y_k)} + \sum \abs{f(y_k) -f(x_k)} \leq \epsilon+s  $$
+\end{proof}
+\end{prop}
+
+\begin{theorem}
+	$f$ on $[a,b]$ is absolutely continuous iff exists $h\in \mathcal{L}^[a,b]$ and $c\in \mathbb{R}$ such that
+	$$f(x) = c + \int_a^x h \dd{\lambda}$$
+	In this case $h=f'$ a.e.
+\begin{proof}
+	
+	$\Rightarrow$:
+	$h\in \mathcal{L}^1$, $f(x) = c+\int_a^x h \dd{\lambda}$ thus we've seen that for $\lambda(E) < \delta$
+	$$\int\limits_E \abs{h} \dd{\lambda} < \epsilon$$
+	We'll use it to show that $\int_a^x h\dd{\lambda}$ is absolutely continuous. Let $\left\{x_i,y_i\right\}$ set of disjoint intervals such that $\lambda\qty(\bigcup^m (x_i,y_i)) <\delta$ denote $E=\bigcup^m (x_i,y_i)$, thus
+	
+	$$\int\limits_E \abs{h} \dd{\lambda} < \epsilon$$
+	$$\sum^m \abs{f(y_i) - f(x_i)} = \sum^m \abs{\int_{x_i}^{y_i} h \dd{\lambda}} \leq \sum^m \int_{x_i}^{y_i} \abs{h} \dd{\lambda} = \int\limits_E \abs{h} \dd{\lambda} < \epsilon$$
+	
+	
+	$\Leftarrow$:
+	
+	Suppose $f\in AC[a,b]$ thus $f\in BV[a,b]$ and thus $f'$ exists a.e. and $f' \in \mathcal{L}^1$. Define $g(x) = \int_a^x f' \dd{\lambda}$, by previous direction $g\in AC[a,b]$ and thus $f-g \in AC[a,b]$. We know that $g'$ exists a.e. and $g'=f'$ a.e. Thus $f'-g'=0$ a.e., i.e., $f-g = 0$.
+\end{proof}
+
+\begin{coll}
+	If $f\in AC[a,b]$ then for all $a\leq x\leq b$ 
+	$$\int_a^x f' \dd{\lambda} = f(x)-f(a)$$
+\end{coll}
+\end{theorem}
+
+\begin{prop}
+	$f\in AC[a,b]$ and $E \subseteq [a,b]$ such that $\lambda(E) = 0$ then $f(E)$ measurable and $\lambda(f(E)) = 0$.
+\end{prop}

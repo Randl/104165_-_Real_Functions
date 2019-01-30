@@ -1,0 +1,19 @@
+	Let $f: \mathbb{R}^n = \mathbb{R}^l\times \mathbb{R}^m \to \mathbb{R}$. Denote for $y\in \mathbb{R}^m$ and $x\in \mathbb{R}^l$ $f_y(x) = f(x,y)$
+
+
+\begin{lemma}
+	If the theorem is right for a sequence of functions $0\leq f_1 \leq f_2 \dots $ and $f=\lim_{j\to \infty}f_j$ then the theorem is right for $f$.
+	\begin{proof}
+		For all $y\in \mathbb{R}^m$ $(f_j)_y \uparrow f_y$, thus $f$ is measurable for almost all $y$:
+		$$F_j(y) = \int (f_j)_y \dd{x} \uparrow\int f_y \dd{x} = F(y)$$
+		$$\int\limits_{\mathbb{R}^m} F \dd{y} = \lim_{j\to \infty} \int F_j \dd{y} = \lim_{j\to \infty} \int f_j \dd{\lambda} = \int f \dd{\lambda}$$
+	\end{proof}
+\end{lemma}
+
+\begin{theorem}[Fubini theorem]
+Let $f: \mathbb{R}^n \to [-,\infty]$ be a measurable function. THen for almost all $y\in \mathbb{R}^m$ a function $f_y$ is measurable and thus $F(y) \int\limits_{\mathbb{R}^l} f_y(x) \dd{\lambda(x)}$ and $F$ is measurable on $\mathbb{R}^m$ and
+	$$\int\limits_{\mathbb{R}^m} F(y) \dd{\lambda(y)} = \int\limits_{\mathbb{R}^n} f \dd{\lambda}$$
+\end{theorem}
+
+
+\section{Differentiation and integration in $\mathbb{R}$}

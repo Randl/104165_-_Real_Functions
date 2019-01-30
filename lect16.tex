@@ -1,0 +1,144 @@
+
+\section{Question 1}
+$L^1_C(\mathbb{R}^n)$ - functions in $L^1$ with compact support a.e.
+
+$\mathcal{C}^m$ - function with continuous partial derivatives up to order $m$.
+
+$\mathcal{C}^m_c$ - function in $\mathcal{C}^m$ with constant support.
+
+$\mathcal{C}^\infty = \bigcap_{k=1}^\infty \mathcal{C}^k$.
+
+
+Convergence in $L^1$:
+$$f_n\stackrel{L^1}{\to} f  \Rightarrow \int \abs{f_n-f} \dd{\lambda} \to 0$$
+
+If $Y_1\subset Y_2$ then $\bar{Y}_1 \subset \bar{Y}_2$. Also $\bar{\bar{Y}} = \bar{Y}$.
+
+\begin{lemma}
+	If $f_n\to f$ a.e. and $\abs{f_n}<\abs{f}$ and $\left\{  f_n, f\right\} \subseteq L^1$ then $f_n\stackrel{L^1}{\to} f  $.
+	\begin{proof}
+		Since
+		$$\int \abs{f_n-f} \dd{\lambda} \stackrel{a.e.}{\to} 0$$
+		$$\abs{f_n-f} \leq \abs{f_n}+\abs{f} \leq 2\abs{f} \in L^1$$
+		From dominated convergence,
+		$$\int\abs{f_n-f} \dd{\lambda} = 0$$
+	\end{proof} 
+\end{lemma}
+
+
+\begin{lemma}[Urysohn's lemma ] \label{urysohn}
+	Let $B$,$C$ closed disjoint sets, then exists continuous $f:\mathbb{R}^n \to [0,1]$ such that $\eval{f}_C = 1$ and $\eval{f}_B=0$.
+\end{lemma}
+\begin{lemma}
+	Simple function are dense in $L^1$.
+	\begin{proof}
+		First lets show that $L_c^1$ is dense in $L^1$. Let $f\in L^1$ and denote
+		$$f_n = f\chi_{B_0(n)}$$
+		Since $f_n \stackrel{a.e.}{\to} f$ and $\abs{f_n} \leq \abs{f}$ we get 
+		$$L_c^1 \ni f_n \stackrel{L^1}{\to} f $$
+		Thus $L_c^1$ is dense in $L^1$.
+		
+		Now lets show that simple functions are dense in $L_c^1$. It's enough to show that for nonnegative functions. For each function $f\in L^1_c$ exists sequence $s_k\geq 0$ such that $s_k \stackrel{a.e.}{\to} f$ and $\abs{s_k} \leq \abs{f}$ we get 
+		$$s_k \stackrel{L^1}{\to} f $$
+		
+	\end{proof} 
+\end{lemma}
+
+
+\begin{lemma}
+	$C_c$ is dense in $L^1$.
+	\begin{proof}
+		We want to show that any nonnegative simple function with compact support can be approximated with functions from $C_c$. It's enough to show that for $\chi_A$, where $A$ is closed and measurable. Suppose $A\subseteq B_0(n)$. $\forall \epsilon >0$ exists open $G$ and compact $K$ such that 
+		$$K\subseteq A \subseteq G$$
+		$G\subseteq B_0(n)$.
+		
+		From \ref{urysohn}, exists $g: \mathbb{R}^n \to [0,1]$ such that 
+		$\eval{g}_{K} = 1$ and $\eval{g}_{\mathbb{R}^n \setminus G}=0$. $g\in C_c$.
+		$$g(x) - \chi_A(x) = \begin{cases}
+		0&x\in K\\
+		0& x \in \mathbb{R}^n \setminus G\\
+		\leq 1 & x\in G\setminus K
+		\end{cases}$$
+		$$\int \abs{g(x) - \chi_A(x)} \dd{\lambda} = \int\limits_{G\setminus K} \abs{g(x) - \chi_A(x)} \dd{\lambda} \leq \lambda(G\setminus K) < \epsilon$$
+	\end{proof} 
+\end{lemma}
+
+\begin{theorem}
+	Let $f\in L_1$ and $f_y(x) = f(x+y)$
+	$$\norm{f_y-f} \stackrel{y\to0}{\to} 0$$
+	\begin{proof}
+		Let $f\in L^1$ and $\epsilon>0$. Exists $g\in C_c$ such that $\norm{f-g} <\frac{\epsilon}{3}$. Suppose $g=0$ outside of $B_0(r)$.
+		
+		$$\int \abs{f-g} \dd{\lambda} < \frac{\epsilon}{3} $$
+		But
+		$$\int \abs{f_y-g_y} \dd{\lambda} < \frac{\epsilon}{3} $$
+		i.e., $\norm{f_y-g_y} <\frac{\epsilon}{3}$.
+		$g$ is uniformly continuous. Thus exists $1>\delta>0$ such that if $\norm{y}<\delta$ then
+		$$\abs{g(x+y)-g(x)} <\frac{\epsilon}{3\lambda(B_0(r+1)}$$
+		For $\norm{x} > r+1$ 
+		$$\abs{g(x+1)-g(x) } = 0$$
+		Thus for $\norm{y}<\delta$
+		$$\int \abs{g_y(x) -g(x)} \dd{\lambda} = \int\limits_{B_0(r+1)} \abs{g(x+y)-g(x)} \leq \lambda(B_0(r+1)) \frac{\epsilon}{3\lambda(B_0(r+1)} = \frac{\epsilon}{3}$$
+		Thus
+		$$\norm{f_y-f} \leq \norm{f_y-g_y} + \norm{g_y-g} + \norm{g_y-f} <\epsilon$$		
+	\end{proof}
+\end{theorem}
+
+\begin{definition}
+	We say that $f_n\to f$ in measure if 
+	$$\lambda\qty(\left\{ x: \abs{f_n(x) - f(x)} \geq \epsilon  \right\}) = 0$$
+\end{definition}
+
+Note that $f_n\stackrel{L^1}{\to} f \Rightarrow f_n\stackrel{\text{measure}}{\to} f$.
+
+\begin{definition}
+	$\left\{x_n\right\}$ in metric space $X$ is called Cauchy sequence if for all $\epsilon>0$ exists $N$ such that for all $n,m>N$
+	$$\norm{x_n-x_m} < \epsilon$$
+\end{definition}
+
+\begin{definition}
+	Metric space is called complete space if each Cauchy sequence converges.
+\end{definition}
+\begin{definition}
+	Complete normed space is called Banach space.
+\end{definition}
+\begin{theorem}
+	$L^1$ is Banach space.
+	\begin{proof}
+		Let $\left\{ f_n \right\}$ Cauchy sequence in $L^1$. For all $\epsilon>0$ exists $N(\epsilon)$ such that $\norm{f_n-f_m}<\epsilon$ for $n,m>N$. We can require that $\left\{ N\qty(\frac{1}{2^k}) \right\}$ is non-decreasing sequence.
+		Denote $n_k = N\qty(\frac{1}{2^k})$ and $g_k = f_{n_k}$.
+		
+		For all $k$:
+		$$\int \abs{g_k-g_{k+1} } = \norm{g_k-g_{k+1}} = \abs{f_{n_k} - f_{n_{k+1}}} < \frac{1}{2^k}$$
+		Thus
+		$$\sum_{k=1}^\infty \int \abs{g_k-g_{k+1} } < \infty$$
+		
+		We've shown that from that we can conclude that
+		$$h(x) = \sum_{k=1}^\infty (g_{k+1}-g_k)$$
+		exists and $h\in L^1$.
+		
+		$$\int h\dd{\lambda} = \sum_{k=1}^\infty g_{k+1}-g_k \dd{\lambda}$$
+		$$h(x) = \lim_{N\to \infty} \sum_{k=1}^N  g_{k+1}-g_k = \lim_{N\to \infty} g_N(x) - g_1(x)$$
+		
+		Thus
+		$$\lim_{N\to \infty} g_N(x) = h(x) + g_1(x)$$
+		
+		On the other hand
+		$$\sum_{k=m}^\infty g_{k+1}(x)- g_k(x) =\lim_{N\to \infty} g_N(x) - g_m(x) = g_1(x) + h(x) - g_m(x) $$
+		$$\norm{g_1+h-g_m} = \norm{\sum_{k=m}^\infty g_{k+1} - g_k} \leq \sum \norm{g_k-g_{k+1}}\leq \sum_{k=m}^\infty \frac{1}{2^k} \stackrel{m\to \infty}{\to} 0$$
+		
+		Thus $g_m \stackrel{L_1}{\to} g_1+h$ meaning partial sequence of $\left\{f_n\right\}$ converges and thus  $\left\{f_n\right\}$ converges.
+	\end{proof}
+
+\begin{coll}
+	If $f_n \stackrel{L_1}{\to}  f$ then exists subsequence $\left\{ f_{n_k} \right\}$ such that $f_n \stackrel{\text{a.e.}}{\to}  f$ 
+	\begin{proof}
+		$g_k = f_{n_{k}} \to g_1+h$ a.e. and $g_k = f_{n_k} \stackrel{L_1}{\to}  g_1+h$  but $g_k \stackrel{L_1}{\to}  f_1$ thus $f=g_1+h$ a.e. and thus $g_k\to f$ a.e.
+	\end{proof}
+\end{coll}
+\end{theorem}
+
+\begin{prop}
+	In normed space if exists $\sum x_n$ then
+	$$\norm{\sum x} \leq \sum \norm{x}$$
+\end{prop}

@@ -1,0 +1,106 @@
+\begin{theorem}[Fatou's lemma]
+	Let $\left\{ f_k \right\}_{k=1}^\infty$ a sequence of nonegative measurable functions.
+	
+	$$\int \liminf f_k \dd{\lambda} \leq \liminf \int f_k \dd{\lambda}$$
+	
+	\begin{proof}
+		$$\liminf f_k(x)  =\sup\limits_m \inf\limits_{j\geq m} f_j(x)$$
+		$$g_m(x) = \inf\limits_{j\geq m} f_j(x) $$
+		Since $0\leq g_m \leq g_{m+!}$ and $g_m \leq f_m$,
+		$$\liminf f_k(x) = \sup\limits_m g_m(x) = \lim g_m(x)$$
+		$$\int \liminf f_k \dd{\lambda} =  \int \lim_{m\to \infty} g_m \dd{\lambda} = \int \lim_{m\to \infty}  g_m \dd{\lambda} \leq \liminf \int f_m \dd{\lambda}$$
+	\end{proof}
+\end{theorem}
+
+\subsection{Stage 3}
+\begin{definition}
+	Let $f : \mathbb{R}^n \to [-\infty, \infty]$ measurable. $f$ is called integrable if $\int f^+(x) \dd{\lambda} <\infty$ and $\int f^-(x) \dd{\lambda} <\infty$ and in this case
+	$$\int f\dd{\lambda} = \int f^+(x) \dd{\lambda}  - \int f^-(x) \dd{\lambda}$$
+	
+	Set of all integrable functions is denoted $\mathcal{L}^!(\mathbb{R}^n)$.
+\end{definition}
+
+\begin{prop}
+	$$\int \abs{f} \dd{\lambda} \leq \infty \iff f\in \mathcal{L}^1$$
+	\begin{proof}
+		$f\in \mathcal{L}^1$, then
+		$$\int \abs{f}  \dd{\lambda}  = \int \qty(f_++f_-) \dd{\lambda} = \int f_+ \dd{\lambda} + \int f_- \dd{\lambda} < \infty$$
+		
+		$f_+, f_- \leq \abs{f}$, then $\int f_+ \dd{\lambda} ,\int f_- \dd{\lambda} \leq  \int \abs{f} \dd{\lambda} < \infty$.
+	\end{proof}
+\end{prop}
+\begin{prop}
+$$\int \abs{f} \dd{\lambda} \geq \abs{\int f \dd{\lambda}}$$
+\begin{proof}
+	$$\abs{\int f \dd{\lambda} } = \abs{\int f_+ \dd{\lambda} +\int f_- \dd{\lambda}  } \leq \int f_+ \dd{\lambda} + \int f_- \dd{\lambda}  = \int \abs{f}$$
+\end{proof}
+\end{prop}
+
+\begin{prop}
+	If $f\in \mathcal{L}^1$ then
+	$$\lambda(f^{-1}(-\infty)) = \lambda(f^{-1}(\infty)) = 0$$
+	\begin{proof}
+		Let $A = \lambda(f^{-1}(\infty))$ and $\lambda(A) > 0$. 
+		$f_+ \geq \infty \cdot \chi_A$.
+		
+		Then $\int f_+ \dd{\lambda} \geq \int \infty \cdot \chi_A \dd{\lambda} = \infty$.
+	\end{proof}
+\end{prop}
+
+
+\begin{prop}
+	If $f=g$ a.e. and $f\in \mathcal{L}_1$, then $g\in \mathcal{L}_1$ and $\int f\dd{\lambda}  =\int g\dd{\lambda}$.
+\end{prop}
+
+
+\begin{prop}
+	If $f\in \mathcal{L}_1$ and $\int \abs{f} \dd{\lambda} = 0$, then $f=0$ a.e.
+	\begin{proof}
+		Define 
+		$$A_k = \left\{ x: \abs{f(x) } > \frac{1}{k}  \right\}$$
+		$$\abs{f} \geq \abs{f} \chi_{A_k} \geq \frac{1}{k} \chi_{A_k}$$
+		$$0 =\int \abs{f} \dd{\lambda} \geq \frac{1}{k} \int \chi_{A_k} $$
+		Thus $\lambda(A_k) = 0$ and thus
+		$$\lambda(\bigcup A_k) = 0$$
+	\end{proof}
+\end{prop}
+
+\begin{prop}
+	$\mathcal{L}^1$ is vector space.
+	\begin{proof}
+		For $a\geq 0$,
+		$$af = af_+ + af_-$$
+		$$\int af \dd{\lambda} = \int af_+ - \int af_- = a\int f_+ - a\int f_- = a\int f$$
+		For $a<0$, we note that $(af)_\pm = -af_\mp$.
+		
+		Let $h=f+g$
+		$$h_+-h_- = h = (f_+-f_-) + (g_+ - g_-)$$
+		$$h_+ + f_- + g_- = h_- + f_+ + g_+$$
+		$$\int h_+ +\int f_- + \int g_-=  \int h_- + \int f_+ + \int g_+$$
+		Then $h_+ \leq f_++ g_+$ and $\int h_+ < \infty$, i.e. $h\in \mathcal{L}^1$.
+	\end{proof}
+\end{prop}
+
+\begin{theorem}[Monotonic convergence theorem]
+	Let $\left\{ f_n\right\}$ sequence of integrable functions such that $ f_1\leq f_2 \leq  \dots $ and $\sup\limits_n \int f_n \dd{\lambda} <\infty$
+	Let $f(x) = \lim_{n\to\infty} f_n(x)$ then $\int f\dd{\lambda} = \lim_{n\to\infty} \int f_n \dd{\lambda}$.
+	
+	\begin{proof}
+		Define $g_n = f_n-f_1$ then $g_n$ are non-negative and thus converge as we've shown.
+	\end{proof}
+	
+\end{theorem}
+
+\begin{theorem}[Dominated convergence theorem]
+	Let $\left\{  f_n \right\}$ be a sequence of measurable functions on $\mathbb{R}^n$ such that exists $0\leq g \in \mathcal{L}^1$ such that
+	$\abs{f_k(x)} \leq g_x$ a.e.
+	
+	Let
+	$$f(x) = \lim_{k\to \infty} f_k(x)$$
+	then
+	$$\int f \dd{\lambda} = \lim_{k\to \infty} \int f_k \dd{\lambda}$$
+	
+	\begin{proof}
+		
+	\end{proof}
+\end{theorem}

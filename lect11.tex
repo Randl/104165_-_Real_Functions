@@ -1,0 +1,176 @@
+\begin{definition}[Almost uniform convergence]
+Let $\left\{  f_n\right\}$, $f$ be real functions measurable on $A$. We say that $f_n\to f$ almost uniformly, if for all $\epsilon>0$ exists measurable $E$ such that $\lambda(A\setminus E) \leq \epsilon$ and on $E$ $f_n \to f$ uniformly.
+\end{definition}
+\begin{theorem}[Egorov's theorem]
+	Let $A\subseteq \mathbb{R}^n$ be a measurable set with finite measure. Let $\left\{  f_n\right\}$, $f$ real functions measurable on $A$ and $f_n\to f$ a.e. on $A$. Then for all $\epsilon>0$ exists $E$ such that $\lambda(A\setminus E) \leq \epsilon$ and on $E$ $f_n \to f$ uniformly a.e.
+	\begin{proof}
+		$f_n\to f$, then exists $n$ such that for $j\geq n$ $\abs{f_j-f} < \frac{1}{k}$.
+	
+	Denote 
+	$$E_n^k = \left\{ c: \abs{f_j(x) -f(x)} < \frac{1}{k} \quad \forall k\geq n \right\}  $$
+	Then for all $k$ $x\in \bigcup_{n=1}^\infty E_n^k$.
+	
+	From the assumption we get $\lambda\qty(A\setminus \bigcup_{n=1}^\infty E_n^k)=0$. Note that $E_{n}^k \subseteq E_{n+1}^k$ thus
+	$$\forall k \: A\setminus E_n^k \supseteq A\setminus E_{n+1}^k$$
+	$$ A\setminus \bigcup_{n=1}^\infty E_n^k = \bigcap_{n=1}^\infty A\setminus E_{n}^k$$
+	$$0=\lambda\qty(A\setminus \bigcup_{n=1}^\infty E_n^k) = \lambda\qty(\bigcap_{n=1}^\infty A\setminus E_{n}^k) = \lim_{n\to\infty} \lambda(A\setminus A_n^k)$$
+	
+	Thus for all $k$ $\lambda(A\setminus A_n^k) \to 0$. For all $\epsilon>0$ exists $n_k$ such that 
+	$$n\geq n_k \Rightarrow \lambda\qty(A\setminus E_n^k) < \frac{\epsilon}{2^k}$$
+	Denote $E = \bigcup_{k=1}^\infty$ (it is measurable). 
+	$$\lambda(A\setminus E) = \lambda\qty(\bigcup_{k} A\setminus E_{n_k}^k) \leq \sum \lambda(A\setminus E_{n_k}^k) < \sum \frac{\epsilon}{2^k} = \epsilon$$
+	
+	For all $x\in E\subseteq E_{n_k}^k \subseteq E_n^k$, thus for all $k$ exists $n_k$ such that
+	$$\abs{f_k(x) - f(x) } \leq \frac{1}{k}$$
+	Thus $f_n \to f$ uniformly on $E$.
+	\end{proof}
+\end{theorem}
+
+\paragraph{Example}
+The condition $\lambda(A)<\infty$ is necessary. Take $A=\mathbb{R}$ and 
+$$f_n = \chi_{[n,\infty]}$$
+$f_n\to 0$ for all $x$.
+
+
+\section{Lebesgue integral}
+\subsection{Stage 1}
+Let $s$ simple measurable function we can write
+$$s(x) = \sum_{i=1}^m a_i \chi_{A_i} (x)$$
+Such that $\left\{  A_i\right\}$ are measurable and disjoint and $\mathbb{R}^n = \bigcup_{i=1}^n A_i$ and $0\leq a_i \in \mathbb{R}$. We define
+$$\int s\dd{\lambda} = \sum_{i=1}^m a_i \lambda(A_i)$$
+where $0\cdot \infty =0$
+\begin{prop}
+	$\int s\dd{\lambda}$ is well-defined
+	\begin{proof}
+	 Directly from \ref{simpints}
+	\end{proof}
+\end{prop} 
+\begin{prop}
+$$0\leq \int s\dd{\lambda} \leq \infty$$
+\end{prop} 
+\begin{prop}
+For all $0\leq c \in \mathbb{R}$, $\int cs\dd{\lambda} = c\int s\dd{\lambda}$
+\end{prop} 
+\begin{prop}
+$$\int (s+t) \dd{\lambda} = \int s \dd{\lambda} + \int t \dd{\lambda}$$
+\end{prop} 
+\begin{prop} \label{simpints}
+$s\leq t$ a.e. $\Rightarrow$ $\int s\dd{\lambda} \leq \int t \dd{\lambda}$
+\begin{proof}
+	
+	Denote $N = \left\{ x: s(x)> t(t) \right\}$
+	$$s(x) = \sum_{i=1}^{m} a_i \chi_{A_i}(x)$$
+	$$t(x) = \sum_{i=1}^{k} b_i \chi_{B_i}(x)$$
+	For all $i$
+	$$A_i = \bigcup_{j=1}^k (A_i \cap B_j) $$
+	Then
+	$$\int s \dd{\lambda} = \sum a_i \lambda(A_i) $$
+	$$\lambda(A_i) = \lambda\qty(\bigcup_{j=1}^k A_i \cap B_j) = \sum_{j=1}^k \lambda(A_i \cap B_j)$$
+	$$\int s\dd{\lambda} = \sum_{i,j} a_i \lambda(A_i \cap B_j)$$
+	$$\int t\dd{\lambda} = \sum_{i,j} b_j \lambda(A_i \cap B_j)$$
+	
+	For all $i,j$, $$a_i\lambda(A_i\cap B_j) \leq b_j \lambda(A_i\cap B_j)$$
+	If $\lambda(A_i\cap B_j)=0$ it's obvious. Else $\exists x \in A_i\cap B_j \setminus N$, and for that $x$ $s(x) \leq t(x)$ and thus $a_i\leq b_j$
+	
+	and thus $\int s\dd{\lambda} \leq \int t \dd{\lambda}$.
+\end{proof}
+\end{prop} 
+\begin{prop}
+	$s= t$ a.e. $\Rightarrow$ $\int s\dd{\lambda} = \int t \dd{\lambda}$
+	
+	\begin{proof}
+		Directly from \ref{simpints}
+	\end{proof}
+\end{prop} 
+\begin{prop}
+If $\alpha \in \mathbb{R}$ and $s'(x) = s(x+\alpha)$, then $s'$ is simple and 
+$$\int s' \dd{\lambda} = \int s \dd{\lambda}$$
+\end{prop} 
+
+
+\subsection{Stage 2}
+
+Let $f: \mathbb{R}^n \to [0,\infty]$ be a measurable function. We define
+$$\int f \dd{\lambda } = \sup \left\{ \int s\dd{\lambda} : s<\infty, s\leq f, \text{ simple masurable} \right\}$$
+\begin{prop}
+	$\int f\dd{\lambda}$ is well-defined
+\end{prop} 
+\begin{prop}
+	$$0\leq \int f\dd{\lambda} \leq \infty$$
+\end{prop} 
+\begin{prop}
+	For all $0\leq c \in \mathbb{R}$, $\int cf\dd{\lambda} = c\int f\dd{\lambda}$
+\end{prop} 
+\begin{prop}
+	If $f\leq g$ a.e.
+	$$\int f \dd{\lambda} \leq \int g \dd{\lambda}$$
+	\begin{proof}
+		Denote $N = \left\{ x ; f(x) > g(x) \right\}$ and $I = \int f\dd{\lambda}$.
+		
+		For all $\epsilon>0$  exists $s$ such that
+		$$\int s \dd{\lambda} \geq I-\epsilon$$
+		$$\tilde{s} = \begin{cases}
+		s(x) & x\notin N\\
+		0 &  x\in N
+		\end{cases}$$
+		Then $\tilde{s} \leq g$.
+		$$I-\epsilon = \int s \dd{\lambda}  = \int \tilde{s} \dd{\lambda} \leq \int g \dd{\lambda}$$
+		Thus
+		$$\int \tilde{s} \dd{\lambda} \geq I$$
+	\end{proof}
+\end{prop} 
+\begin{prop}
+If $f= g$ a.e.
+$$\int f \dd{\lambda} = \int g \dd{\lambda}$$
+\end{prop} 
+\begin{prop}
+If $f'(x)= f(x+\alpha)$ a.e.
+$$\int f \dd{\lambda} = \int f' \dd{\lambda}$$
+\end{prop} 
+
+
+\begin{theorem}[Monotone convergence theorem]
+Let $\left\{ f_n\right\}$ sequence of measurable functions such that $0\leq f_1\leq \dots $
+Let $f(x) = \lim_{n\to\infty} f_n(x)$ then $\int f\dd{\lambda} = \lim_{n\to\infty} \int f_n \dd{\lambda}$.
+\begin{proof}
+	For all $n$
+	$$\int f_n \dd{\lambda} \leq \int f\dd{\lambda}$$
+	Denote $I = \lim_{n\to\infty} \infty f_n$.
+	
+	Assume $I<\int f\dd{\lambda}$. Then $\exists c\in \mathbb{R}$ such that
+	$$I<c<\int f\dd{\lambda}$$
+	From definition of $\int f\dd{\lambda}$ exists simple $t$ such that $0\leq t\leq f$ such that $\int t \dd{\lambda} > c$. Exists $0<q<1$ such that $\int t \dd{\lambda} > \frac{c}{q}$
+	
+	Define $s=qt$, then $c<\int s \dd{\lambda}$ and $f(x).s(x)$.
+	
+	Define $$E_k = \left\{ x: f_k(x) \geq s(x) \right\}$$, then
+	$$E_1 \subseteq E_2 \subseteq \dots$$
+	$$\mathbb{R}^n = \bigcup_{k=1}^\infty E_k$$
+	
+	For all $k$
+	$$f_k \geq f_k \chi_{E_k} \geq s(x) \chi_{E_k}$$
+	By writing $s(x) = \sum_{i=1}^m a_i \chi_{A_i}$ we get
+	$$ s(x) \chi_{E_k} = \sum a_i \chi_{A_i \cap E_k}$$
+	
+	Then
+	$$\int f_k \dd{\lambda} \geq \int s(x) \chi_{E_k} \dd{\lambda} = \sum a_i \lambda(A_i \cap E_k)$$
+	
+	But
+	$$\lambda(A_i)  = \lim_{k\to \infty} \lambda(A_i\cap E_k)$$
+	and
+	$$I = \lim_{k\to \infty} \int f_k \dd{x} = \lim_{k\to \infty} \sum_{i=1}^m a_i \lambda(A_i \cap E_k) = \sum_{i=1}^m a_i \lambda(A_i) =\int s \dd{x} > c$$
+	
+\end{proof}
+\begin{coll}
+	$$\int (f+g) \dd{\lambda} = \int f\dd{\lambda} + \int g \dd{\lambda}$$
+	\begin{proof}
+		Find $\left\{s_k\right\} \to f$, $\left\{t_k\right\} \to g$, then
+		$$\int f+g \dd{\lambda} = \lim_{k\to \infty} \int s_k+t_k \dd{\lambda}= \lim_{k\to \infty} \int s_k\dd{\lambda}+\lim_{k\to \infty} \int  t_k \dd{\lambda} = \int s\dd{\lambda} + \int t \dd{\lambda}$$
+	\end{proof}
+\end{coll}
+
+\begin{coll}
+	Let $\left\{ f_k \right\}$ sequence of measurable functions, $f_k\geq 0$ on $\mathbb{R}^n$ then
+	$$\int \qty[\sum_{k=1}^\infty f_k ] \dd{\lambda} = \sum_{k=1}^\infty \int f_k \dd{\lambda}$$
+\end{coll}
+\end{theorem}

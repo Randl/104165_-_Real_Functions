@@ -1,0 +1,146 @@
+\begin{definition}
+	Let $E\subseteq \mathbb{R}$ and $M$ set of closed intervals  of positive lengths. $M$ is called Vitali cover if for all $\epsilon>0$ and $\forall x\in E$ $\exists I\in M$ such that $x\in I$ and $\lambda(I)<\epsilon$.
+\end{definition}
+\begin{theorem}[Vitaly]
+	Let $E\subset \mathbb{R} $, $\lambda^*(E) <\infty$ and $M$ Vitaly cover of $E$. Then either $E$ is contained in finite disjoint union $\bigcup_{k=1}^N I_K$ for $I_k\in M$ or exists $\left\{ I_k\right\}_{k=0}^\infty \subset M$ such that $I_k\cap I_j = \emptyset$ and for all $\epsilon>0$ exists $N=N(\epsilon)$ such that $\lambda^*(E\setminus \bigcup^N I_k) < \epsilon$
+\end{theorem}
+\begin{definition}
+	
+	Let $g$ defined in neighbourhood of $x_0$. Define 
+	$$\liminf_{x\to x_0} g(x)  = \sup\limits_{\delta > 0} \qty(\inf \left\{ g(y): 0<\abs{y-x_0} < \delta \right\})$$
+	$$\limsup_{x\to x_0} g(x)  = \inf\limits_{\delta > 0} \qty(\sup \left\{ g(y): 0<\abs{y-x_0} < \delta \right\})$$
+\end{definition}
+
+\begin{lemma}
+	\begin{enumerate}
+		\item  $$\liminf g \leq \limsup g$$
+		\item  If $g(x) \geq M$ 
+		$$\liminf g \geq M$$
+		\item  If $g(x) \leq M$ 
+		$$\limsup g \leq M$$
+		\item  $\lim g$ exists if $\liminf g = \limsup g$
+	\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+	$$UD f(x) = \limsup_{h\to 0} [f(x+h) - f(x)]$$
+	$$LD f(x) = \liminf_{h\to 0} [f(x+h) - f(x)]$$
+\end{definition}
+
+\begin{lemma}
+	Let $A\subseteq [a,b]$ such that for all $x\in A$, $0\leq LD f(x) \leq r$ then
+	$$\lambda^*(f(A)) \leq r \lambda^*(A)$$
+	\begin{proof}
+		Let $\epsilon>0$ and $G$ open such that $A\subseteq G$ and $\lambda(G) \leq \lambda^*(A)+\epsilon$. Thus
+		$$r . \sup\limits_{\delta > 0} \qty(\inf \left\{ \frac{1}{h}\qty[f(x+h)-f(x)] : 0 < \abs{h} < \delta  \right\})$$
+		
+		For all $x\in A$ choose $\delta_0 > 0$ such that $(x-\delta_0,x+\delta_0) \subseteq G$. For all $\delta<\delta_0$ exists $0<\abs{h}<\delta$ such that $\frac{1}{h} \qty[f(x+h) - f(x)] < r$. Denote
+		$$M = \left\{ [f(x), f(x+h)] : [x,x+h]\subseteq G,\: \frac{1}{h} \qty[f(x+h) - f(x)] < r \right\}$$
+		
+		Then $M$ is Vitali cover of $f(A)$, since $$\lambda\qty([f(x), f(x+h)]) < \abs{h} r < \delta r$$
+		
+		By theorem, exists 
+		$$\left\{ \qty[f(x+h) - f(x)]  \right\} \subseteq M$$
+		of disjoint intervals such that
+		$$\lambda^*\qty(f(A)\setminus \bigcup [f(x_n), f(x_n+h_n)]) = 0$$
+		Thus
+		$$\lambda^*(f(A)) \leq \lambda^*\qty(f(A)\setminus \bigcup [f(x_n), f(x_n+h_n)]) + \lambda^*\qty(\bigcup [f(x_n), f(x_n+h_n)]) \leq \sum \lambda[f(x_n), f(x_n+h_n)] = \sum \abs{[f(x_n)- f(x_n+h_n)} \leq \sum r \abs{h_n} \leq r\lambda(G) \leq r\lambda^*(A) + r\epsilon$$
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	Let $A\subseteq [a,b]$ such that for all $x\in A$ 
+	$$UD f(x) > s>0$$
+	then $\lambda^*(f(A)) \geq s \lambda^*(A)$
+	\begin{proof}
+		Let $G$ open. $f(A) \subseteq G$ and $\lambda(G) \leq \lambda^*(A)+\epsilon$.
+		Since $f$ has only countable number of discontinuity points,  we can remove a null set of such points and assume $f$ is continuous on $A$.
+		
+		Thus, for all $x \in A$ exists $\delta_0(x) > 0$ such that 
+		$$[f(x-\delta), f(x+\delta)] \subseteq G$$
+		for all $0<\delta < \delta_0$ and for all $\delta_0$ exists $\abs{h}$ such that
+		$0<\abs{h} < \delta$ and 
+		$$s < \frac{1}{h} \qty[f(x+h) - f(x)] $$
+		and $\qty[ f(x),f(x+h) ] \subseteq G$.
+		
+		Let 
+		$$M = \left\{ [x,x+h]  \right\}$$
+		which is Vitali cover.
+		
+		$$\lambda^*(A) \leq \lambda^*\qty(A \setminus \bigcup [x_n, x_n+h_n]) + \lambda^*\qty(\bigcup [x_n, x_n+h_n]) =\leq \lambda \bigcup [x_n, x_n+h_n] = \sum \abs{h_n} \leq \frac{1}{s} \sum \abs{f(x_n+h_n) - f(x_n) } < \frac{1}{s} \lambda(G) \leq \frac{1}{s} \lambda^*(f(A)) + \frac{1}{s} \epsilon$$
+	\end{proof}
+
+\begin{coll}
+	If $f$ is monotonic on $[a,b]$ and $A = \left\{ x\in[a,b] : \: UD f(x) =\infty \right\}$ then $\lambda^*(A) = 0$.
+	\begin{proof}
+		For all $s>0$
+		$$\infty > f(b)-f(a) = \lambda([f(a),f(b)]) = \lambda^*(f([a,b])) \geq \lambda^*(f(A) ) \geq s\lambda^*(A)$$
+		Thus $\lambda^*(A) = 0$.
+	\end{proof}
+\end{coll}
+\end{lemma}
+
+\begin{theorem}[Lebesgue]
+	If $f$ is monotoneous on $[a,b]$ it is differentiable a.e. there.
+	\begin{proof}
+		Assume $f$ is non-decreasing and if we replace $f$ with $f(x)+x$ it is increasing.
+		From corollary, $UD f(x) < \infty$ a.e. and it has to be $UD f(x) = LD f(x)$ a.e.
+		
+		For all $r<s$ in $\mathbb{Q}$ define
+		$$A_{r,s} = \left\{ x: LD f(x) < r <s<UD f(x) \right\}$$
+		$$\bigcup A_{r,s} = \left\{ x: LD f(x) <UD f(x) \right\}$$
+		It's enough to show that for any $r$, $s$ $\lambda^*(A_{r,s}) = 0$.
+		
+		From lemmas we get
+		$$s\lambda^*(A_{r,s}) \leq \lambda^*(fA_{r,s}) \leq r \lambda^*(A_{r,s})$$
+		Bur $r<s$ and thus $\lambda^*(A_{r,s}) =0$.
+	\end{proof}
+\begin{coll}
+	For all $f\in L^1[a,b]$ the function $F(x) = \int_a^x f \dd{\lambda}$ os differentiable a.e.
+	\begin{proof}
+		Use $f_+$ and $f_-$.
+	\end{proof}
+\end{coll}
+\end{theorem}
+
+\begin{prop}
+	Let $f$ non-decreasing on $[a,b]$ then $f'$ is measurable and integrable and 
+	$$\int_a^b f' \dd{\lambda} \leq f(b)-f(a)$$
+	\begin{proof}
+		Define $f$ to be $f(b)$ on $[b,b+1]$ from Lebesgue theorem $f'$ exists a.e. If $f'$ exists, 
+		$$f'(x) = \lim_{n\to \infty}\underbrace{ n\qty[f\qty(x+\frac{1}{n}) -f(x)]}_{g_n(x) \geq 0}$$
+		$g_n$ is measurable and so is $f'$. By Fatou lemma
+		\begin{align*}
+		\int_a^b f' \dd{\lambda} \leq \liminf \int g_n \dd{\lambda} = \liminf \qty(n \int_a^b \qty[f\qty(x+\frac{1}{n}) -f(x)] \dd{\lambda}) = \liminf n \int_a^b f\qty(x+\frac{1}{n}) \dd{\lambda} -n \int_a^b  f(x) \dd{\lambda}= \liminf n \int_{a+\frac{1}{n}}^{b+\frac{1}{n}} f\qty(x) \dd{\lambda} -n \int_a^b  f(x) \dd{\lambda} =  \liminf n \int_{b}^{b+\frac{1}{n}} f\qty(x) \dd{\lambda} -n \int_a^{a+\frac{1}{n}}  f(x) \dd{\lambda} \leq f(b) - f(a)
+		\end{align*}
+	\end{proof}
+\end{prop}
+\subsection{Functions of bounded variation}
+\begin{definition}
+	Let $f$ real on $[a,b]$ and $T = \left\{ T_i \right\}_{i=0}^n$ partition of $[a,b]$. Denote
+	$$V_f(T) = \sum_{i=1}^n \abs{f(t_i) - f(t_{i-1})}$$
+	And
+	$$V_a^b f = \sup\limits_T \left\{ V_F(T) \right\}$$
+	variation of $f$
+\end{definition}
+
+\begin{definition}
+	We say $f$ has bounded variation if $f \in BV[a,b]$. Note that
+	$V_a^b f + V_b^c f = V_a^c f$.
+\end{definition}
+
+\begin{prop}
+	Let $f\in BV [a,b]$ and define for all $x\in [a,b] $
+	$$g(x) = V_a^x f$$
+	Then $g$ is monotonous non decreasing, and if $f$ is continuous from left/right, so is $g$.
+	
+	\begin{proof}
+		$$V_a^y f = V_a^x f + V_x^y f$$
+		
+		Now suppose $f$ is continuous from the left in $x_0$. Choose partition of $[a,x_0]$ such that $V_f(T) > V_a^{x_0} f - \frac{\epsilon}{2}$. From continuity from the left exists $t_{n-1}<y<x_0$ such that $\abs{f(x_0) - f(y)} <\frac{\epsilon}{2}$ Now
+		$$g(y) = V_a^y f \geq \sum_{i=1}^{n-1} \abs{f(t_i) - f(t_{i-1})} + \abs{f(y)-f(t_{n-1})} > \sum_{i=1}^{n-1} \abs{f(t_i) - f(t_{i-1})} + \abs{f(y)-f(t_{n-1})} + \abs{f(x_0) - f(y)} -\frac{\epsilon}{2} \geq V_f(T) - \frac{\epsilon}{2} > g(x_0) - \frac{\epsilon}{2}$$
+		
+		Now let $y\leq z\leq x_0$ then $\abs{g(x_0) - g(z)} = g(x_0) - g(z) \leq  g(x_0) - g(y) < \epsilon$
+	\end{proof} 
+\end{prop}
+

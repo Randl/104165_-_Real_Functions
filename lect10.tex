@@ -46,4 +46,17 @@
 		
 		Denote $A_k = A\cap (B(0,k) \setminus B(0,k-1)$. Define $f_k =\eval{f}_{A_k}$ then exists closed $E_k\subseteq A_k$ such that $\eval{f_k}_{E_k}$ such that $\lambda(A_k\setminus E_k)  < \frac{\epsilon}{2^k}$. $E=\bigcup E_k$ is closed and $\eval{f}_E$ is continuous and $\lambda(A\setminus E) < \epsilon$.
 		\end{proof}
+	
+	\begin{coll}
+		Let $f$ measurable and vanishing outside measurable $A$. Then there exists sequence of continuous functions $\left\{ g_k\right\}$ such that $g_k\to f$ a.e. on $A$.
+		\begin{proof}
+			For all natural $K$ exists closed $E_k\subseteq A$ and continuous $g_k$ suxh that $g_k=f$ on $E_k$ and $\lambda(A\setminus E_k) < \frac{1}{2^k}$. Denote $E \bigcup_m \qty(\bigcap_{k\geq m} E_k) \subseteq A$.
+			
+			
+			$\forall x \in E$ exists $m$ such that $\forall k\geq m$ $x\in E_k$. That means $\forall k\geq m \: g_k(x) = f(x)$, which means $g_k(x) \to f(x)$ for every such $x$, i.e. for all $x\in E$.
+			
+			$$A\setminus E = \bigcap_m \bigcup_{k\geq m} \qty(A\setminus E_k)$$
+			$$\lambda(A\setminus E) \leq \lambda\qty(\bigcup_{k\geq m} A\setminus E_k) \leq \sum_{k=m}^\infty \lambda(A\setminus E_k) \leq \sum_{k=m}^\infty\frac{1}{2^k} = \frac{1}{2^{m-1}}$$
+		\end{proof}
+	\end{coll}
 \end{theorem}

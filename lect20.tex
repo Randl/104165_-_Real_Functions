@@ -1,0 +1,37 @@
+\begin{theorem}
+	$f\in BV[a,b]$ iff $f$ is difference of two non-decreasing monotonic functions. If $f$ is continuous we get difference of two continuous functions then $f\in BV[a,b]$ and $f$ differentiable a.e. and Reimann integrable.
+	
+	\begin{proof}
+		$f(x) = V_a^x(f) - [V_a^xf - f(x)]$, we need $v_a^x f - f(x) = h(x)$ monotonous non-decreasing. If $x<y$
+		$$f(y)-f(x) \leq \abs{f(x) -f(y)}\leq V_x^yf$$
+		$$h(y)-h(x) = V_a^y - f(y) - V_a^x +f(x) = V-x^y - f(y) +f(x) \geq 0$$
+	\end{proof}
+\end{theorem}
+
+\begin{prop}
+	Let $f$ integrable on $[a,b]$, define $F(x) = \int_a^x f \dd{\lambda}$ then $F$ is continuous and $F\in BV[a,b]$.
+	
+	\begin{proof}
+		Continuity of integral relative to the boundaries gives us continuity of $F$. $F\in BV[a,b]$ since $F = \int_a^x f_+ - \int_a^x f$, i.e., $F$ is a difference of two non-decreasing monotonic functions.
+	\end{proof}
+\end{prop}
+
+\begin{theorem}
+	Let $f$ integrable on $[a,b]$. Define
+	$$F(x) = \int_a^x f \dd{\lambda}$$
+	Then $F$ is differentiable a.e. and $F'=f$ a.e.
+	
+	\begin{proof}
+		We'll proof that $\int_a^x F' \dd{\lambda} = \int_a^x f \dd{\lambda} $.
+		
+		Denote $M = \sup \abs{x}$. 
+		$$f_n(x) = n\qty[F\qty(x+\frac{1}{n}) -F(x)] \to F'(x)$$
+		
+		Define $f(x) = 0$ for $x>b$, i.e. $F(x) = F(b)$ for those $x$.
+		$$\abs{f_n(x)} = \abs{n\qty[F\qty(x+\frac{1}{n}) -F(x)] } = n\abs{\int_x^{x+\frac{1}{n}} f\dd{\lambda} } \leq M$$
+		Since $\abs{f_n} \leq M \chi_{[a,b]} $ and $f_n\to F'$ a.e., we get
+		\begin{align*}
+		\int_a^c F' \dd{\lambda} = \lim_{n\to \infty} \int_a^c f_n \dd{\lambda} = \lim_{n\to \infty} n\int_a^c F\qty(x+\frac{1}{n}) - F(x) \dd{\lambda} =\lim_{n\to \infty} n\int_a^c F\qty(x+\frac{1}{n})\dd{\lambda} -n\int_a^c F(x) \dd{\lambda}=\\=\lim_{n\to \infty} n\int_{a+\frac{1}{n}}^{c+\frac{1}{n}} F\qty(x)\dd{\lambda} -n\int_a^c F(x) \dd{\lambda} = \lim_{n\to \infty} n\int_{a}^{a+\frac{1}{n}} F\qty(x)\dd{\lambda} - \lim_{n\to \infty} n\int_{c}^{c+\frac{1}{n}} F\qty(x)\dd{\lambda} =\\= F(c) - F(a) = \int_a^c f \dd{\lambda}
+		\end{align*}
+	\end{proof}
+\end{theorem}

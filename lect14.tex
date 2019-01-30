@@ -1,0 +1,38 @@
+\begin{prop}
+	The Riemann and Lebesgue integrals are equivalent only for bounded functions on finite intervals.
+\end{prop}
+\begin{theorem}
+	Let $T: \mathbb{R}^n \to \mathbb{R}^n$ be a linear transformation and $A\subseteq \mathbb{R}^n$. Then
+	$$\lambda^*(TA) = \abs{\det{T}} \lambda^*(A)$$
+	$$\lambda_*(TA) = \abs{\det{T}} \lambda_*(A)$$
+	and if $A$ is measurable, $TA$ is measurable and
+	$$\lambda(TA) = \abs{\det{T}} \lambda(A)$$
+	\begin{proof}
+		If $T$ is not invertible, then dimension of the image is less than dimension of the space, and thus 
+		$$\lambda^*(TA) = \lambda_*(TA) = 0$$
+		and since $\det T = 0$, we are done.
+		
+		
+		If $T$ is not invertible, denote matrix corresponding to $T$ as $B$. We can rewrite $B$ as
+		$$B=E_1E_2\dots E_n$$. 
+		Assuming $A$ is special rectangle, without loss of generality it is
+		$$A  =[0,b_1]\times[0,b_2]\times\dots\times [0,b_n]\times$$
+		If $E_i$ multiplies row by $c$
+		then
+		$$EA  =[0,b_1]\times[0,b_2]\times\dots\times[0,cb_i]\times\dots\times [0,b_n]\times$$
+		$$\lambda(EA) = \abs{c} \lambda(A) = \abs{\det E}\lambda(A)$$
+		If $E_i$ swaps two rows the area doesn't change.
+		If $E_i$ adds row to another row, we get a parallelogram whose area still equals to original.
+		
+		We continue step-by-step for steps of building of Lebesgue measure.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	Let $T$ invertible linear transformation on $\mathbb{R}^n$ and $f$ function on $\mathbb{R}^n$. 
+	\begin{enumerate}
+		\item If $f$ is measurable $f\circ T$ is measurable
+		\item If $f\geq 0$ measurable then $\int f \dd{\lambda} = \abs{\det T} \int f(Tx) \dd{\lambda}$.
+		\item If $f$ is measurable then $\int f \dd{\lambda} = \abs{\det T} \int f(Tx) \dd{\lambda}$.
+	\end{enumerate}
+\end{theorem}
